@@ -1,0 +1,174 @@
+{
+ "counts": {
+  "authored_verified": 3,
+  "generated": 5,
+  "reference": 4
+ },
+ "entries": [
+  {
+   "authored": {
+    "reason": "no_saved_jump_settings",
+    "status": "unknown"
+   },
+   "bpm": 130.04,
+   "chart": "experiments/flow-v1/replay-ab-motion/FENT_TG/e2e-off-c00-s0.dat",
+   "id": "generated/FENT_TG/e2e-off-c00-s0",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "b553f5b49e6a8a53d53e0871fa3b6631c5f7c82d825d5a62f1c38d6658049072",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/FENT_TG/results.json",
+   "timing_source_sha256": "2021e77dd8cba5f5241c8ff0c5216283ee1a6afa2ce096639e4ee8896579339a"
+  },
+  {
+   "authored": {
+    "reason": "no_saved_jump_settings",
+    "status": "unknown"
+   },
+   "bpm": 126.1,
+   "chart": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/e2e-off-c00-s0.dat",
+   "id": "generated/if_i_lose_myself/e2e-off-c00-s0",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "9e1cd8d8c75cd4335cf919d51e9be0417c76759496626293fa0aae64590d655a",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/results.json",
+   "timing_source_sha256": "5f6eb9a0736ba5978d863e910d3bb0bc7641922320bb3192a079dd587f4400f9"
+  },
+  {
+   "authored": {
+    "reason": "no_saved_jump_settings",
+    "status": "unknown"
+   },
+   "bpm": 109.99999999999999,
+   "chart": "experiments/flow-v1/replay-ab-motion/numb/e2e-off-c00-s0.dat",
+   "id": "generated/numb/e2e-off-c00-s0",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "bf7c1382c37ea5f86b34f74caac43e0db9d5959be8bbe820e242d1a629b0511e",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/numb/results.json",
+   "timing_source_sha256": "b1222431c60f416a120f5a9af055058305e0f6c48ea3abbcbe6eafae422119e3"
+  },
+  {
+   "authored": {
+    "reason": "no_saved_jump_settings",
+    "status": "unknown"
+   },
+   "bpm": 122.5,
+   "chart": "experiments/flow-v1/replay-ab-motion/rather_be/e2e-off-c00-s0.dat",
+   "id": "generated/rather_be/e2e-off-c00-s0",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "52f1881aa69d46ef4e9824e4b211dac4b34ec6fe686123e036781855c5bd2a56",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/rather_be/results.json",
+   "timing_source_sha256": "e1527cb83371827ba8fe630cfb4284ba1bdbfb15767daf3c20daa28292822e93"
+  },
+  {
+   "authored": {
+    "reason": "no_saved_jump_settings",
+    "status": "unknown"
+   },
+   "bpm": 192.0,
+   "chart": "experiments/flow-v1/replay-ab-motion/still_waiting/e2e-off-c00-s0.dat",
+   "id": "generated/still_waiting/e2e-off-c00-s0",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "f52753004482a81241b17af9d80d6cffc9453f6196063431df556d9981356e09",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/still_waiting/results.json",
+   "timing_source_sha256": "72e8885049a758cd445560a17526f77f083dcec632be5eed14deda0d8cd69a90"
+  },
+  {
+   "authored": {
+    "binding": "beatmapFilename==chart and sha256 match",
+    "characteristic": "Standard",
+    "info": "../beat-saber-map-gen/input/bytrius/19909 (Rap God V2 - Ryger)/info.dat",
+    "info_sha256": "552535e55c7412d4c5d518e5ecd6788d1502050c05aae4cd2edb2c4f64fca73a",
+    "njs": 20.0,
+    "offset_beats": -0.5,
+    "status": "verified"
+   },
+   "bpm": 148.0,
+   "chart": "../beat-saber-map-gen/input/bytrius/19909 (Rap God V2 - Ryger)/ExpertPlus.dat",
+   "id": "human/rap_god_19909/ExpertPlus",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "7736b8842119f136ebeaec7c46676d30631c36e0932d6d744ed43dec2b37c042",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "authored": {
+    "binding": "beatmapFilename==chart and sha256 match",
+    "characteristic": "Standard",
+    "info": "../beat-saber-map-gen/input/input/25f (Reality Check Through The Skull - DM DOKURO)/info.dat",
+    "info_sha256": "3078a14252300d354a6470e4a2c19cbbae71e66362b575fa42a3e9a0d15d6d4a",
+    "njs": 17.0,
+    "offset_beats": 0.0,
+    "status": "verified"
+   },
+   "bpm": 260.0,
+   "chart": "../beat-saber-map-gen/input/input/25f (Reality Check Through The Skull - DM DOKURO)/ExpertPlus.dat",
+   "id": "human/reality_check_25f/ExpertPlus",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "9fc87a73a4f4cc0ff50f82ddaf6213edea2033775c796af3a9cad96a27796938",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "authored": {
+    "binding": "beatmapFilename==chart and sha256 match",
+    "characteristic": "Standard",
+    "info": "../beat-saber-map-gen/input/input/3741 (Reality Check Through The Skull - JonathanRune)/info.dat",
+    "info_sha256": "724b15f37865df7d3492f24c2547e2c816a1192dac60ca16059be6b72bf71715",
+    "njs": 18.0,
+    "offset_beats": 0.0,
+    "status": "verified"
+   },
+   "bpm": 260.0,
+   "chart": "../beat-saber-map-gen/input/input/3741 (Reality Check Through The Skull - JonathanRune)/ExpertPlus.dat",
+   "id": "human/reality_check_3741/ExpertPlus",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "e0ef93352162ec9bd043e2764e9ae71840217cab0dbebe9ce724f0fa7c6000d6",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "authored": {
+    "reason": "no_info_entry_binds_this_filename",
+    "status": "unknown"
+   },
+   "bpm": 160.0,
+   "chart": "../beat-saber-map-gen/input/input/24e5e (SPACEMAN - oegoe)/ExpertPlus.dat",
+   "id": "human/spaceman_24e5e/ExpertPlus",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "2a66e208ebb0ce57dad4f1602fb944eda421443ce0492177a37c1f1104f703d7",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  }
+ ],
+ "expected_counts": {
+  "generated": 5,
+  "reference": 4
+ },
+ "expected_ids": [
+  "generated/FENT_TG/e2e-off-c00-s0",
+  "generated/if_i_lose_myself/e2e-off-c00-s0",
+  "generated/numb/e2e-off-c00-s0",
+  "generated/rather_be/e2e-off-c00-s0",
+  "generated/still_waiting/e2e-off-c00-s0",
+  "human/rap_god_19909/ExpertPlus",
+  "human/reality_check_25f/ExpertPlus",
+  "human/reality_check_3741/ExpertPlus",
+  "human/spaceman_24e5e/ExpertPlus"
+ ],
+ "frozen": "2026-09-20",
+ "missing": [],
+ "model": "e01_projected_face_occlusion",
+ "note": "E01 visibility panel: 5 generated seed-0 e2e-off candidates + 4 ExpertPlus human references, drawn from wall_panel.json. Every chart is analyzed under the STANDARD scenario (NJS 16, T 0.600s); AUTHORED settings are used only where Info.dat binds the exact chart by filename + content hash. Generated jump settings are unknown (not reconstructed). origin_s=0 keeps each chart's clock.",
+ "schema_version": 1,
+ "standard_scenario": {
+  "lifetime_s": 0.6,
+  "njs": 16.0
+ }
+}

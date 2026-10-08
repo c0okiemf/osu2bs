@@ -1,0 +1,496 @@
+{
+ "confirm": {
+  "excluded": [
+   {
+    "family": "fam:2e25c",
+    "reason": "not_eligible_ok"
+   },
+   {
+    "family": "fam:a908",
+    "reason": "not_eligible_ok"
+   },
+   {
+    "family": "fam:5efe",
+    "reason": "not_eligible_ok"
+   },
+   {
+    "family": "fam:464df",
+    "reason": "not_eligible_ok"
+   },
+   {
+    "family": "fam:1ff34",
+    "reason": "not_eligible_ok"
+   }
+  ],
+  "families": [
+   {
+    "family": "fam:11795",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:4aedc",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:1acb3",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:42fa3",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:45d04",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:40804",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:34f88",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:11c10",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:17195",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:2fe80",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:344c8",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:271e1",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:26a91",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:e4ae",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:380d7",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:2c4f",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:5d26",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:195f",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:709b",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:a9ac",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:82d0",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:7c0b",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:9137",
+    "n_maps": 1
+   },
+   {
+    "family": "fam:2ae82",
+    "n_maps": 1
+   }
+  ],
+  "sealed": true
+ },
+ "dev": [
+  {
+   "audio": "experiments/flow-v1/sources/still_waiting/song.mp3",
+   "audio_sha256": "97d3f4e203a8aed1ca27ee8161934c87bd9ee8d05734b0aaa18949618e8da6fb",
+   "cohort": "sentinel",
+   "family": "panel:still_waiting",
+   "id": "panel:still_waiting",
+   "osu": "experiments/flow-v1/sources/still_waiting/gen.osu",
+   "osu_sha256": "a11561967e989801402a562a591e9d5bb1a66d141b12613d520684dd990cec3d",
+   "song": "still_waiting",
+   "source": "clean_rhythm_panel",
+   "split": "panel"
+  },
+  {
+   "audio": "out/numb/song_orig.egg",
+   "audio_sha256": "cee0c3a3ebdc0ffa5a36b2ad366e86f4e2b62976410e5d9474b04fd0474da15b",
+   "cohort": "sentinel",
+   "family": "panel:numb",
+   "id": "panel:numb",
+   "osu": "out/numb/beatmapc5ae8b16449b462ca883bf7671f55110.osu",
+   "osu_sha256": "3486b3eb610dcac25f04e6ab11d086847939fda6eed1cf7563aeb2f1e4f37f97",
+   "song": "numb",
+   "source": "clean_rhythm_panel",
+   "split": "panel"
+  },
+  {
+   "audio": "out/rather_be/song_orig.egg",
+   "audio_sha256": "2c52503a891f77701abd7a2736ee38215cbdc326592983503e7dfd330454cf72",
+   "cohort": "sentinel",
+   "family": "panel:rather_be",
+   "id": "panel:rather_be",
+   "osu": "out/rather_be/beatmapc50e6cfdbe464d4596ea280d04a6608f.osu",
+   "osu_sha256": "dafe04637003d2142df5ea198224e1fac5d01d84a6d455672e5ea9170db1d86b",
+   "song": "rather_be",
+   "source": "clean_rhythm_panel",
+   "split": "panel"
+  },
+  {
+   "audio": "out/FENT_TG/song_orig.egg",
+   "audio_sha256": "0372bccff1f9b557bb1576e1f31fc44a3265fe7d9a379b5db03928d9d2387c29",
+   "cohort": "sentinel",
+   "family": "panel:FENT_TG",
+   "id": "panel:FENT_TG",
+   "osu": "out/FENT_TG/beatmap31193ad8a00f4a13be7859a3a54f4413.osu",
+   "osu_sha256": "7c526d161741901e47b36cca70656c8cece26ae173f50f3f47955037be4d392d",
+   "song": "FENT_TG",
+   "source": "clean_rhythm_panel",
+   "split": "panel"
+  },
+  {
+   "audio": "out/if_i_lose_myself/song_orig.egg",
+   "audio_sha256": "8634bdc86977d614aefd8bb2c63c64d18dbdf34f410c0d41cd1bfc120defeddb",
+   "cohort": "sentinel",
+   "family": "panel:if_i_lose_myself",
+   "id": "panel:if_i_lose_myself",
+   "osu": "out/if_i_lose_myself/beatmapcf51f25383fe4b38b7c70d5336baff8d.osu",
+   "osu_sha256": "4c090c987abe8c8b3dde0e5c99cdcb09b90772a4317f074f935ee1a49304fe93",
+   "song": "if_i_lose_myself",
+   "source": "clean_rhythm_panel",
+   "split": "panel"
+  },
+  {
+   "audio": "../beat-saber-map-gen/input/bytrius/19909 (Rap God V2 - Ryger)/01 Rap God.egg",
+   "audio_sha256": "ffffc9bb09f22b49ac78f7e39b810950b1be6b0e3bf94110aaf8a89430c18560",
+   "cohort": "gem",
+   "family": "panel:rap_god",
+   "id": "panel:rap_god",
+   "osu": "eval/rap_god/gen.osu",
+   "osu_sha256": "d938a17e016a05bfe8f6190c68f2c0a82897dd4b9d34ff62176ac7dda47955e6",
+   "song": "rap_god",
+   "source": "clean_rhythm_panel",
+   "split": "panel"
+  },
+  {
+   "audio": "../beat-saber-map-gen/input/input/25f (Reality Check Through The Skull - DM DOKURO)/RCTTS.egg",
+   "audio_sha256": "4e26b51320e220fca53f7ce27ee5bbddf4aa9d4c644a22bf0e8d59ad044f647e",
+   "cohort": "gem",
+   "family": "panel:reality_check",
+   "id": "panel:reality_check",
+   "osu": "eval/reality_check/gen.osu",
+   "osu_sha256": "e7650bea70188cad43181452a678385b31a9aad1aa671ceb74d3bed02e28b746",
+   "song": "reality_check",
+   "source": "clean_rhythm_panel",
+   "split": "panel"
+  },
+  {
+   "audio": "../beat-saber-map-gen/input/input/24e5e (SPACEMAN - oegoe)/song.egg",
+   "audio_sha256": "8e4d71e2272f935fa9a25d33cb35475f76e9c15ca383c88acdf1d36df3ca37bf",
+   "cohort": "gem",
+   "family": "panel:spaceman",
+   "id": "panel:spaceman",
+   "osu": "eval/spaceman/gen.osu",
+   "osu_sha256": "8dead531c8acc436b6c2458d77ded025e4003a122a5f4968168256816af342ec",
+   "song": "spaceman",
+   "source": "clean_rhythm_panel",
+   "split": "panel"
+  },
+  {
+   "audio": "beatsaver/1672d (American Idiot - CyanSnow)/song.egg",
+   "audio_sha256": "1949e7671dca234bbc0f15e5c9d32b7214d7ce9dd9bb80f1c722e8fd9d1e39a9",
+   "family": "fam:1672d",
+   "genre": "punk_rock",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'green day'",
+   "id": "fam:1672d",
+   "mi_provenance_sha256": "e860c996997b5194d20ebb03d7f91477d2bb5484896da99a8337e428f36cfa31",
+   "osu": "experiments/pilot-mi/fam_1672d/gen.osu",
+   "osu_sha256": "de4a6cd2660e7176091c12b6ba43f50d280550714ff093b23c4352014a063853",
+   "song": "American Idiot",
+   "source": "pilot_mi",
+   "split": "train"
+  },
+  {
+   "audio": "beatsaver/327bc (Beat It 2023 Remaster - Joetastic)/song.egg",
+   "audio_sha256": "a5b59b8f4dc585a6914606750d6b87892710b3b42ce675eff0ed21962c8e9718",
+   "family": "fam:327bc",
+   "genre": "punk_rock",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'fall out boy'",
+   "id": "fam:327bc",
+   "mi_provenance_sha256": "7bb78db2bf4e1b7ca43985137fe875470b862fa9b8691388be722e6bc675c854",
+   "osu": "experiments/pilot-mi/fam_327bc/gen.osu",
+   "osu_sha256": "a1b3343e642c2ea663a6693c6b89311ed2cf9acab8c6e1ac53db94ad15131cdd",
+   "song": "Beat It (2023 Remaster)",
+   "source": "pilot_mi",
+   "split": "train"
+  },
+  {
+   "audio": "../beat-saber-map-gen/input/input/20f1c (Breaking The Habit - Bytrius)/song.egg",
+   "audio_sha256": "946682f948302442e2a82499803c16e4c9394bf6b55465bf482db83acd1d66c9",
+   "family": "fam:20f1c",
+   "genre": "punk_rock",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'linkin park'",
+   "id": "fam:20f1c",
+   "mi_provenance_sha256": "00001534d301fab1b81578de9830fd2cda75c2137b6c2cc05bcb78ec0036189b",
+   "osu": "experiments/pilot-mi/fam_20f1c/gen.osu",
+   "osu_sha256": "3e187c5992eca5f4ad46a13a0346a9cd287ca5841f8af5032286e51933290a02",
+   "song": "Breaking The Habit",
+   "source": "pilot_mi",
+   "split": "train"
+  },
+  {
+   "audio": "beatsaver/3037e (Fat Lip - Sum 41 - ramenator05)/fatLip.egg",
+   "audio_sha256": "59bead8292fd13b2538da780c8cf96c16587adaacc513fad11e84b03c93d2cfd",
+   "family": "fam:3037e",
+   "genre": "punk_rock",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'sum 41'",
+   "id": "fam:3037e",
+   "mi_provenance_sha256": "cfa4d757b944dcdfe6e37432d4bc571d83db09922bc8dcd1f29ad602aa72d290",
+   "osu": "experiments/pilot-mi/fam_3037e/gen.osu",
+   "osu_sha256": "af05c911d20549dbb2774ab3643db9fa818b11195b64f8382236e09a3416fa3e",
+   "song": "Fat Lip - Sum 41",
+   "source": "pilot_mi",
+   "split": "val"
+  },
+  {
+   "audio": "../beat-saber-map-gen/input/input/14427 (Kingslayer - muffn & altrewin)/song.egg",
+   "audio_sha256": "3ca8aa7bc3dafe6b810604ecdd9127b08a1533a9bca13f58161c60583acc9789",
+   "family": "fam:14427",
+   "genre": "punk_rock",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'bring me the horizon'",
+   "id": "fam:14427",
+   "mi_provenance_sha256": "f6b8b41192503dd020f114f59831abbc25fb7554a305cb1bd149b7871f8ef7df",
+   "osu": "experiments/pilot-mi/fam_14427/gen.osu",
+   "osu_sha256": "52a6be853c7a40f62764e5c5ffbe3afc269a26a94ca2a9df416caab37df4732c",
+   "song": "Kingslayer",
+   "source": "pilot_mi",
+   "split": "val"
+  },
+  {
+   "audio": "beatsaver/110ac (The Prince - bearly)/song.egg",
+   "audio_sha256": "1c32c932d2f7ca718ee4d178490a7388580e98f8bf59e7914a317c5da079059e",
+   "family": "fam:37a9e",
+   "genre": "electronic",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'madeon'",
+   "id": "fam:37a9e",
+   "mi_provenance_sha256": "266e8aed8d92719372eaeaaeaa413d67b667f75f02cd16590816a275dbb419f9",
+   "osu": "experiments/pilot-mi/fam_37a9e/gen.osu",
+   "osu_sha256": "fe158f0a21eb69fb6dc96c51fcd94517f003bf4e1b73774e300c6e867019e80d",
+   "song": "The Prince",
+   "source": "pilot_mi",
+   "split": "train"
+  },
+  {
+   "audio": "beatsaver/2264e (PLAY DICE - Joshabi)/song.egg",
+   "audio_sha256": "706f441ce0c3329f834071d0bf08a1177305b8297d3841bc8beba0a87d086beb",
+   "family": "fam:2264e",
+   "genre": "electronic",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'camellia'",
+   "id": "fam:2264e",
+   "mi_provenance_sha256": "35530f12d4ebb29484977acd15a92af673292bf87a92fff22d6343cf5ff8b8ff",
+   "osu": "experiments/pilot-mi/fam_2264e/gen.osu",
+   "osu_sha256": "76fa15f48350e3aa5162c51e3e7bae36cc952c17a93b2c80e2de5f7f401d5f34",
+   "song": "PLAY DICE!",
+   "source": "pilot_mi",
+   "split": "train"
+  },
+  {
+   "audio": "beatsaver/25057 (M\u00f6bius - cerret)/song.egg",
+   "audio_sha256": "dec05139f6148d892793af73d58ac068d1008b56696ee507dca7ff39a9bb4c1f",
+   "family": "fam:25057",
+   "genre": "electronic",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'camellia'",
+   "id": "fam:25057",
+   "mi_provenance_sha256": "f75d3b0dcf800bde4ce4c4ac3d2f07ac27bfe33cb27f2e02e01c7e5e6b44073a",
+   "osu": "experiments/pilot-mi/fam_25057/gen.osu",
+   "osu_sha256": "86cb4a9c7c539acebb51e04bd8fb57aef3ebc2e749a4fa1608ad6069b2015023",
+   "song": "M\u00f6bius",
+   "source": "pilot_mi",
+   "split": "train"
+  },
+  {
+   "audio": "beatsaver/3dd0e (Dreamland - nitronikexe)/song.egg",
+   "audio_sha256": "cd9cd0bfafe6c41bed1531b3f41d91aa407da226f858149cd1f87f0e16a83391",
+   "family": "fam:3dd0e",
+   "genre": "electronic",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'fox stevenson'",
+   "id": "fam:3dd0e",
+   "mi_provenance_sha256": "608cc20027772268a690a42c3c8a61306db77870fc3e479646c176fc0e8beea3",
+   "osu": "experiments/pilot-mi/fam_3dd0e/gen.osu",
+   "osu_sha256": "66cd1fbf025e47eca56efa1e2dae93b9d0471e11fae38c0c0d0959f7c6c077c4",
+   "song": "Dreamland",
+   "source": "pilot_mi",
+   "split": "val"
+  },
+  {
+   "audio": "beatsaver/17610 (Tick Tock - Xavier)/song.egg",
+   "audio_sha256": "08238b4c255f1f62fd6f40e20957862b7e2013cba5c98043ede8b4e721ee65db",
+   "family": "fam:17610",
+   "genre": "pop",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'clean bandit'",
+   "id": "fam:17610",
+   "mi_provenance_sha256": "41fdb398fcdac83e3e624f57e2a0d95a3523459a93ff109bda2c36883d3fce8c",
+   "osu": "experiments/pilot-mi/fam_17610/gen.osu",
+   "osu_sha256": "2ba262b796d72b313ea4317334a4681da30013559f7cd2f7517d104a20ebe723",
+   "song": "Tick Tock",
+   "source": "pilot_mi",
+   "split": "train"
+  },
+  {
+   "audio": "beatsaver/5352 (1999 - Teuflum)/song.egg",
+   "audio_sha256": "8c2878660dee01a09320d4a884225a0a77c31a9d7b7268302ccb44bcad26afcf",
+   "family": "fam:5352",
+   "genre": "pop",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'charli xcx'",
+   "id": "fam:5352",
+   "mi_provenance_sha256": "feb30bad368369e9f3a037b98338d5e0acb0f89251327395a8c5a7eef7036ab1",
+   "osu": "experiments/pilot-mi/fam_5352/gen.osu",
+   "osu_sha256": "65c9ecc48ee62a1355c77eb19249d3b6759e97cdeaab5943980740d831fa0428",
+   "song": "1999",
+   "source": "pilot_mi",
+   "split": "train"
+  },
+  {
+   "audio": "../beat-saber-map-gen/input/input/187f2 (Shake It Off - noxn & TinkerVr85 & [xavier])/song.egg",
+   "audio_sha256": "413ec8befbee8ae8ca9b3776108f684d961ffb004d4270260f0ebc71908c1738",
+   "family": "fam:187f2",
+   "genre": "pop",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'taylor swift'",
+   "id": "fam:187f2",
+   "mi_provenance_sha256": "40d4cb571b35c507daa2ff2bf48e160c3e8da7cb62a4e6c6f1627b281fd93224",
+   "osu": "experiments/pilot-mi/fam_187f2/gen.osu",
+   "osu_sha256": "d0123295f03656ee8243fde758c607b24f24970ebc4ea30249fd40724fa1dec4",
+   "song": "Shake It Off",
+   "source": "pilot_mi",
+   "split": "train"
+  },
+  {
+   "audio": "beatsaver/3fa87 (360 - Lekrkoekj)/song.egg",
+   "audio_sha256": "1120547d0e3439094763a8e5e844fde0a93de45dd44792e183f4744c26255578",
+   "family": "fam:3fa87",
+   "genre": "pop",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'charli xcx'",
+   "id": "fam:3fa87",
+   "mi_provenance_sha256": "de0e810c51c3a08dc64ec60549ebe8e732d264141fb333da5adcbbb4e230b3f5",
+   "osu": "experiments/pilot-mi/fam_3fa87/gen.osu",
+   "osu_sha256": "e2a05f1273efb00643207beb7235fd9631bcdd33182042b696c91c7015b56f0d",
+   "song": "360",
+   "source": "pilot_mi",
+   "split": "val"
+  },
+  {
+   "audio": "../beat-saber-map-gen/input/input/30fd (Love The Way You Lie (ft. Rihanna) - StyngMe)/Love The Way You Lie.egg",
+   "audio_sha256": "ed88a9128d7098096ee2be50a760a60fb29dd27550d1113252cc916363268a76",
+   "family": "fam:30fd",
+   "genre": "rap_hiphop",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'eminem'",
+   "id": "fam:30fd",
+   "mi_provenance_sha256": "ede6e9476a53c73a5d932a7bb6097c86c1a414828ee073bb22e73d19cc233299",
+   "osu": "experiments/pilot-mi/fam_30fd/gen.osu",
+   "osu_sha256": "b66f4eab52b7385090f0c1463464f48ad356ca459e7443d5874aab566f3bb7bd",
+   "song": "Love The Way You Lie (ft. Rihanna)",
+   "source": "pilot_mi",
+   "split": "train"
+  },
+  {
+   "audio": "beatsaver/11e6d (Picture Perfect - ryger)/PicturePerfect.egg",
+   "audio_sha256": "e6119e832ec39513cc1d67a9591065c167c903a73b0a1b5ae4894143b5e57acc",
+   "family": "fam:11e6d",
+   "genre": "rap_hiphop",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'tech n9ne'",
+   "id": "fam:11e6d",
+   "mi_provenance_sha256": "09419aac82dcc0524e9328ce203398536cb788a411bd3de7e74bb2ca8844354d",
+   "osu": "experiments/pilot-mi/fam_11e6d/gen.osu",
+   "osu_sha256": "4a1b2ba0e7b7f5f72b862f4260a9f32cbb4dad3ffdf0114eb56cdc8b3a6e522b",
+   "song": "Picture Perfect",
+   "source": "pilot_mi",
+   "split": "train"
+  },
+  {
+   "audio": "beatsaver/304ea (Infinite - OneSpookyBoi)/song.egg",
+   "audio_sha256": "edfef7d578fa78cb8e2f66504f2086c1d4dda09df2b1e49e48c3f9985a4fa76c",
+   "family": "fam:304ea",
+   "genre": "rap_hiphop",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'nf'",
+   "id": "fam:304ea",
+   "mi_provenance_sha256": "16a1cb27da635780d3fc5eac158f66986728b0739a6355213e8b4521de0c48ba",
+   "osu": "experiments/pilot-mi/fam_304ea/gen.osu",
+   "osu_sha256": "b8391f33c641303e43179f16b543722403fa66852d4dd70feb420d1f5d768093",
+   "song": "Infinite",
+   "source": "pilot_mi",
+   "split": "train"
+  },
+  {
+   "audio": "beatsaver/b8cc (Follow God - Epix-Fusion)/song.egg",
+   "audio_sha256": "673471da4532a0db3544275bfd35776e18ab56f893e5e883ae37ad8ee3b2130a",
+   "family": "fam:b8cc",
+   "genre": "rap_hiphop",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'kanye'",
+   "id": "fam:b8cc",
+   "mi_provenance_sha256": "2e2b2eb052a21920f5808d08492812c2e5afcd4d74b3b575b9c7bb19d16f902f",
+   "osu": "experiments/pilot-mi/fam_b8cc/gen.osu",
+   "osu_sha256": "0122ad422830b1fa5e8a24a683bb3b2c1c1c4d84d14111fb34b077a080a22258",
+   "song": "Follow God",
+   "source": "pilot_mi",
+   "split": "val"
+  },
+  {
+   "audio": "beatsaver/a6c9 (Welcome to Chilis - serenity)/song.egg",
+   "audio_sha256": "2757c005e8592fd426ec133c3cfaa40aed34b3672c2effa723ce50901f5980b8",
+   "family": "fam:a6c9",
+   "genre": "rap_hiphop",
+   "genre_confidence": "hi",
+   "genre_provenance": "manual (model music knowledge): artist/title match 'bbno$'",
+   "id": "fam:a6c9",
+   "mi_provenance_sha256": "cc914f6b9a619103deeb616a502b5dc7080a0a18562d066d2b17122e9feacd86",
+   "osu": "experiments/pilot-mi/fam_a6c9/gen.osu",
+   "osu_sha256": "b4b9872957d74acd3c500c9584d06fe179a423585ede53535c0b9ba1777ef231",
+   "song": "Welcome to Chili's",
+   "source": "pilot_mi",
+   "split": "val"
+  }
+ ],
+ "note": "D is a DEVELOPMENT set (contains training-family songs); C is a sealed prospective policy holdout, opened once in Q5.",
+ "salt": "quality-v1-confirm",
+ "version": 1
+}

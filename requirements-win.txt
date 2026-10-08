@@ -1,0 +1,29 @@
+# Inference deps for the bundled Windows app (torch installs separately,
+# per the device the user picks). Mapperatorinator's requirements minus its
+# own GUI stack (pywebview/Qt) and profiler; plus our audio-feature deps.
+# slider comes as a zip archive: the embedded Python has no git.
+accelerate==1.12.0
+pydub==0.25.1
+nnAudio==0.3.4
+PyYAML==6.0.3
+transformers==4.57.3
+hydra-core==1.3.2
+tensorboard==2.20.0
+slider @ https://github.com/OliBomby/slider/archive/refs/heads/master.zip
+wandb==0.24.2
+matplotlib==3.10.8
+pandas==2.3.3
+pyarrow==22.0.0
+einops==0.8.1
+lightning==2.6.0
+flask==3.1.2
+audioop-lts; python_version>='3.13'
+rich==14.2.0
+peft==0.18.1
+rosu-pp-py==3.1.0
+datasets==4.8.3
+torchcodec==0.10.0
+huggingface-hub==0.36.2
+hf-xet==1.4.2
+librosa==0.11.0
+soundfile==0.14.0

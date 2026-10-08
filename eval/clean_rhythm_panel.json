@@ -1,0 +1,105 @@
+{
+ "entries": [
+  {
+   "audio": "experiments/flow-v1/sources/still_waiting/song.mp3",
+   "audio_sha256": "97d3f4e203a8aed1ca27ee8161934c87bd9ee8d05734b0aaa18949618e8da6fb",
+   "bpm": 192.0,
+   "cohort": "sentinel",
+   "osu": "experiments/flow-v1/sources/still_waiting/gen.osu",
+   "osu_sha256": "a11561967e989801402a562a591e9d5bb1a66d141b12613d520684dd990cec3d",
+   "song": "still_waiting",
+   "source_kind": "results",
+   "source_ref": "experiments/flow-v1/replay-ab-motion/still_waiting/results.json"
+  },
+  {
+   "audio": "out/numb/song_orig.egg",
+   "audio_sha256": "cee0c3a3ebdc0ffa5a36b2ad366e86f4e2b62976410e5d9474b04fd0474da15b",
+   "bpm": 109.99999999999999,
+   "cohort": "sentinel",
+   "osu": "out/numb/beatmapc5ae8b16449b462ca883bf7671f55110.osu",
+   "osu_sha256": "3486b3eb610dcac25f04e6ab11d086847939fda6eed1cf7563aeb2f1e4f37f97",
+   "song": "numb",
+   "source_kind": "results",
+   "source_ref": "experiments/flow-v1/replay-ab-motion/numb/results.json"
+  },
+  {
+   "audio": "out/rather_be/song_orig.egg",
+   "audio_sha256": "2c52503a891f77701abd7a2736ee38215cbdc326592983503e7dfd330454cf72",
+   "bpm": 122.5,
+   "cohort": "sentinel",
+   "osu": "out/rather_be/beatmapc50e6cfdbe464d4596ea280d04a6608f.osu",
+   "osu_sha256": "dafe04637003d2142df5ea198224e1fac5d01d84a6d455672e5ea9170db1d86b",
+   "song": "rather_be",
+   "source_kind": "results",
+   "source_ref": "experiments/flow-v1/replay-ab-motion/rather_be/results.json"
+  },
+  {
+   "audio": "out/FENT_TG/song_orig.egg",
+   "audio_sha256": "0372bccff1f9b557bb1576e1f31fc44a3265fe7d9a379b5db03928d9d2387c29",
+   "bpm": 130.04,
+   "cohort": "sentinel",
+   "osu": "out/FENT_TG/beatmap31193ad8a00f4a13be7859a3a54f4413.osu",
+   "osu_sha256": "7c526d161741901e47b36cca70656c8cece26ae173f50f3f47955037be4d392d",
+   "song": "FENT_TG",
+   "source_kind": "results",
+   "source_ref": "experiments/flow-v1/replay-ab-motion/FENT_TG/results.json"
+  },
+  {
+   "audio": "out/if_i_lose_myself/song_orig.egg",
+   "audio_sha256": "8634bdc86977d614aefd8bb2c63c64d18dbdf34f410c0d41cd1bfc120defeddb",
+   "bpm": 126.1,
+   "cohort": "sentinel",
+   "osu": "out/if_i_lose_myself/beatmapcf51f25383fe4b38b7c70d5336baff8d.osu",
+   "osu_sha256": "4c090c987abe8c8b3dde0e5c99cdcb09b90772a4317f074f935ee1a49304fe93",
+   "song": "if_i_lose_myself",
+   "source_kind": "results",
+   "source_ref": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/results.json"
+  },
+  {
+   "audio": "../beat-saber-map-gen/input/bytrius/19909 (Rap God V2 - Ryger)/01 Rap God.egg",
+   "audio_sha256": "ffffc9bb09f22b49ac78f7e39b810950b1be6b0e3bf94110aaf8a89430c18560",
+   "bpm": 148.0,
+   "cohort": "gem",
+   "osu": "eval/rap_god/gen.osu",
+   "osu_sha256": "d938a17e016a05bfe8f6190c68f2c0a82897dd4b9d34ff62176ac7dda47955e6",
+   "song": "rap_god",
+   "source_kind": "benchmark_stored_gen",
+   "source_ref": "stored_gen/rap_god"
+  },
+  {
+   "audio": "../beat-saber-map-gen/input/input/25f (Reality Check Through The Skull - DM DOKURO)/RCTTS.egg",
+   "audio_sha256": "4e26b51320e220fca53f7ce27ee5bbddf4aa9d4c644a22bf0e8d59ad044f647e",
+   "bpm": 130.0,
+   "cohort": "gem",
+   "osu": "eval/reality_check/gen.osu",
+   "osu_sha256": "e7650bea70188cad43181452a678385b31a9aad1aa671ceb74d3bed02e28b746",
+   "song": "reality_check",
+   "source_kind": "benchmark_stored_gen",
+   "source_ref": "stored_gen/reality_check"
+  },
+  {
+   "audio": "../beat-saber-map-gen/input/input/24e5e (SPACEMAN - oegoe)/song.egg",
+   "audio_sha256": "8e4d71e2272f935fa9a25d33cb35475f76e9c15ca383c88acdf1d36df3ca37bf",
+   "bpm": 178.0,
+   "cohort": "gem",
+   "osu": "eval/spaceman/gen.osu",
+   "osu_sha256": "8dead531c8acc436b6c2458d77ded025e4003a122a5f4968168256816af342ec",
+   "song": "spaceman",
+   "source_kind": "benchmark_stored_gen",
+   "source_ref": "stored_gen/spaceman"
+  }
+ ],
+ "expected_songs": [
+  "still_waiting",
+  "numb",
+  "rather_be",
+  "FENT_TG",
+  "if_i_lose_myself",
+  "rap_god",
+  "reality_check",
+  "spaceman"
+ ],
+ "frozen": "2026-09-21",
+ "note": "8-song clean-rhythm A/B panel: 5 replay-off sentinels (osu/audio bound to replay-ab-motion results.json) + 3 stored_gen gems (eval/<song>/gen.osu + eval_gen.SONGS audio, benchmark stored_gen). Development/regression panel, NOT an untouched test; gems stay dev.",
+ "schema_version": 1
+}

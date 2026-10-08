@@ -1,0 +1,77 @@
+{
+ "note": "phase 2B diagnostic panel. roles: tune=8 diagnostic tuning, check=4 frozen diagnostic (>=2 rock). Development validation, NOT sealed test. Genre labels are the pilot-subset manual labels (review before trusting).",
+ "songs": [
+  {
+   "song": "Still Waiting",
+   "group": "punk_rock",
+   "role": "check",
+   "audio": "experiments/flow-v1/sources/still_waiting/song.mp3"
+  },
+  {
+   "song": "Hit That",
+   "group": "punk_rock",
+   "role": "check",
+   "audio": "../beat-saber-map-gen/input/bytrius/12fbf (The Offspring - Hit That - Ryger)/The Offspring - Hit That.egg"
+  },
+  {
+   "song": "American Idiot",
+   "group": "punk_rock",
+   "role": "tune",
+   "audio": "beatsaver/1672d (American Idiot - CyanSnow)/song.egg"
+  },
+  {
+   "song": "Fat Lip - Sum 41",
+   "group": "punk_rock",
+   "role": "tune",
+   "audio": "beatsaver/3037e (Fat Lip - Sum 41 - ramenator05)/fatLip.egg"
+  },
+  {
+   "song": "Kingslayer",
+   "group": "punk_rock",
+   "role": "tune",
+   "audio": "../beat-saber-map-gen/input/input/14427 (Kingslayer - muffn & altrewin)/song.egg"
+  },
+  {
+   "song": "Breaking The Habit",
+   "group": "punk_rock",
+   "role": "tune",
+   "audio": "../beat-saber-map-gen/input/input/20f1c (Breaking The Habit - Bytrius)/song.egg"
+  },
+  {
+   "song": "The Prince",
+   "group": "electronic",
+   "role": "tune",
+   "audio": "beatsaver/110ac (The Prince - bearly)/song.egg"
+  },
+  {
+   "song": "Dreamland",
+   "group": "electronic",
+   "role": "tune",
+   "audio": "beatsaver/3dd0e (Dreamland - nitronikexe)/song.egg"
+  },
+  {
+   "song": "PLAY DICE!",
+   "group": "electronic",
+   "role": "check",
+   "audio": "beatsaver/2264e (PLAY DICE - Joshabi)/song.egg"
+  },
+  {
+   "song": "Tick Tock",
+   "group": "pop",
+   "role": "tune",
+   "audio": "beatsaver/17610 (Tick Tock - Xavier)/song.egg"
+  },
+  {
+   "song": "1999",
+   "group": "pop",
+   "role": "tune",
+   "audio": "beatsaver/5352 (1999 - Teuflum)/song.egg"
+  },
+  {
+   "song": "Picture Perfect",
+   "group": "rap_hiphop",
+   "role": "check",
+   "audio": "beatsaver/11e6d (Picture Perfect - ryger)/PicturePerfect.egg"
+  }
+ ]
+}

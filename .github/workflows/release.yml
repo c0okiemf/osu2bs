@@ -1,0 +1,162 @@
+name: release
+
+on:
+  push:
+    branches: [master]
+    # only inputs that actually reach the built binaries
+    paths:
+      - "app/**"
+      - "!app/README.md"
+      - "!app/shot.sh"
+      - "!app/winshot.ps1"
+      - "run.py"
+      - "convert.py"
+      - "groom.py"
+      - "critic.py"
+      - "parity.py"
+      - "motion.py"
+      - "swing_clearance.py"
+      - "onset_flow.py"
+      - "learned_geometry.py"
+      - "timing.py"
+      - "ladder.py"
+      - "ladder.json"
+      - "groom.pt"
+      - "flow.pt"
+      - "onset_flow.pt"
+      - "critic.pt"
+      - "requirements-win.txt"
+      - "quality_policy.py"
+      - "quality_policy.json"
+      - "release_manifest.json"
+      - "condflow.pt"
+      - "planner.pt"
+      - "pref_model.pt"
+      - "cond_flow.py"
+      - "phrase_planner.py"
+      - "flow_decode.py"
+      - "quality_repair.py"
+      - "pref.py"
+      - "eval/quality_metrics.py"
+      - "eval/quality_train.py"
+      - "eval/clean_rhythm.py"
+      - "eval/clean_rhythm_eval.py"
+      - "eval/phrase_plan.py"
+      - "eval/map_reader.py"
+      - "Mapperatorinator"
+      - ".github/workflows/release.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# one build at a time; a newer push supersedes the one in flight
+concurrency:
+  group: release
+  cancel-in-progress: true
+
+jobs:
+  # both binaries build on one linux runner: the Windows exe is
+  # cross-compiled with cargo-xwin (same recipe as app/README.md) —
+  # windows runners are ~3x slower and bill 2x the minutes
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: app/src-tauri
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-xwin
+      - name: Cache Windows SDK (xwin)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/cargo-xwin
+          key: xwin-sdk-v1
+      - name: Restore system package downloads
+        id: apt-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/apt/archives/*.deb
+          key: apt-ubuntu-24.04-${{ hashFiles('.github/workflows/release.yml') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            apt-ubuntu-24.04-${{ hashFiles('.github/workflows/release.yml') }}-
+            apt-ubuntu-24.04-
+      - name: Install and verify system dependencies
+        shell: bash
+        run: |
+          # Cache downloads, not installed files; apt still validates and installs them.
+          mkdir -p "$HOME/.cache/apt/archives/partial"
+          apt_options=(-o Acquire::Retries=3 -o APT::Update::Error-Mode=any
+            -o "Dir::Cache::archives=$HOME/.cache/apt/archives")
+          packages=(libwebkit2gtk-4.1-dev build-essential curl wget file pkg-config
+            libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+            libfuse2t64 clang lld llvm)
+          # Avoid the Azure mirror that returned 404s.
+          printf '%s\n' 'https://archive.ubuntu.com/ubuntu/' | sudo tee /etc/apt/apt-mirrors.txt >/dev/null
+          sudo apt-get "${apt_options[@]}" update
+          if ! sudo apt-get "${apt_options[@]}" install -y --no-install-recommends "${packages[@]}"; then
+            echo 'Package install failed; discard cached downloads and retry once.'
+            sudo apt-get "${apt_options[@]}" clean
+            sudo apt-get "${apt_options[@]}" update
+            sudo apt-get "${apt_options[@]}" install -y --no-install-recommends "${packages[@]}"
+          fi
+          pkg-config --modversion glib-2.0 gobject-2.0 gtk+-3.0 \
+            webkit2gtk-4.1 javascriptcoregtk-4.1 libsoup-3.0
+      # GitHub cache entries are immutable. Save a fresh verified version so the
+      # next restore selects it instead of any damaged or outdated predecessor.
+      - name: Save verified system package downloads
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.cache/apt/archives/*.deb
+          key: ${{ steps.apt-cache.outputs.cache-primary-key }}
+      - name: clang-cl / llvm-lib shims (xwin cross-build)
+        run: |
+          mkdir -p "$HOME/.local/bin"
+          ln -sf "$(which clang)" "$HOME/.local/bin/clang-cl"  # cc-rs wants clang-cl
+          # cc-rs also wants llvm-lib/llvm-rc; llvm pkg usually has unversioned links
+          command -v llvm-lib >/dev/null || \
+            ln -sf "$(ls /usr/bin/llvm-lib-* | head -1)" "$HOME/.local/bin/llvm-lib"
+          command -v llvm-rc >/dev/null || \
+            ln -sf "$(ls /usr/bin/llvm-rc-* | head -1)" "$HOME/.local/bin/llvm-rc"
+      - name: Pack engine
+        run: python3 app/pack_engine.py
+      - name: Build Linux (AppImage)
+        working-directory: app
+        run: |
+          npm install
+          npx tauri build --bundles appimage
+      - name: Build Windows (cargo-xwin)
+        working-directory: app
+        run: |
+          PATH="$HOME/.local/bin:$PATH" npx tauri build --runner cargo-xwin \
+            --target x86_64-pc-windows-msvc --no-bundle
+      - name: Collect
+        run: |
+          cp app/src-tauri/target/release/bundle/appimage/*.AppImage osu2bs.AppImage
+          cp app/src-tauri/target/x86_64-pc-windows-msvc/release/osu2bs-app.exe osu2bs.exe
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: osu2bs (latest)
+          body: >
+            Rolling build from master. Windows: run osu2bs.exe (WebView2
+            required, preinstalled on Win 10/11). Linux: run osu2bs.AppImage.
+            Both are identical: first launch detects your GPU and downloads
+            the AI engine with progress bars.
+          prerelease: false
+          make_latest: true
+          files: |
+            osu2bs.exe
+            osu2bs.AppImage

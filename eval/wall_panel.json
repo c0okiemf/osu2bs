@@ -1,0 +1,469 @@
+{
+ "counts": {
+  "generated": 30,
+  "reference": 11
+ },
+ "entries": [
+  {
+   "bpm": 130.04,
+   "chart": "experiments/flow-v1/replay-ab-motion/FENT_TG/e2e-off-c00-s0.dat",
+   "id": "generated/FENT_TG/e2e-off-c00-s0",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "b553f5b49e6a8a53d53e0871fa3b6631c5f7c82d825d5a62f1c38d6658049072",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/FENT_TG/results.json",
+   "timing_source_sha256": "2021e77dd8cba5f5241c8ff0c5216283ee1a6afa2ce096639e4ee8896579339a"
+  },
+  {
+   "bpm": 130.04,
+   "chart": "experiments/flow-v1/replay-ab-motion/FENT_TG/e2e-off-c01-s1.dat",
+   "id": "generated/FENT_TG/e2e-off-c01-s1",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "39b09d93efd042a3e2f7a2fcee7dd1025473e0bc08d163613b16e5f17cbb3104",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/FENT_TG/results.json",
+   "timing_source_sha256": "2021e77dd8cba5f5241c8ff0c5216283ee1a6afa2ce096639e4ee8896579339a"
+  },
+  {
+   "bpm": 130.04,
+   "chart": "experiments/flow-v1/replay-ab-motion/FENT_TG/e2e-off-c02-s2.dat",
+   "id": "generated/FENT_TG/e2e-off-c02-s2",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "05de5d97b7d9ded783928ef2665edc232ede766b6cd9d08a9311cdfde7460e17",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/FENT_TG/results.json",
+   "timing_source_sha256": "2021e77dd8cba5f5241c8ff0c5216283ee1a6afa2ce096639e4ee8896579339a"
+  },
+  {
+   "bpm": 130.04,
+   "chart": "experiments/flow-v1/replay-ab-motion/FENT_TG/e2e-off-c03-s3.dat",
+   "id": "generated/FENT_TG/e2e-off-c03-s3",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "cacfd3769d53d5dfae54a5aed94454d0fc3f42bc5763effad5fe81af7a855264",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/FENT_TG/results.json",
+   "timing_source_sha256": "2021e77dd8cba5f5241c8ff0c5216283ee1a6afa2ce096639e4ee8896579339a"
+  },
+  {
+   "bpm": 130.04,
+   "chart": "experiments/flow-v1/replay-ab-motion/FENT_TG/e2e-off-c04-s4.dat",
+   "id": "generated/FENT_TG/e2e-off-c04-s4",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "7ee4f651f317ea4090a17a27923a9cefaf596ed68738d2589e3981330e2965db",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/FENT_TG/results.json",
+   "timing_source_sha256": "2021e77dd8cba5f5241c8ff0c5216283ee1a6afa2ce096639e4ee8896579339a"
+  },
+  {
+   "bpm": 130.04,
+   "chart": "experiments/flow-v1/replay-ab-motion/FENT_TG/e2e-off-c05-s5.dat",
+   "id": "generated/FENT_TG/e2e-off-c05-s5",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "2a84dbae7d7b3844a6b809965803831f9e61036c2b609a88030957be45c75be8",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/FENT_TG/results.json",
+   "timing_source_sha256": "2021e77dd8cba5f5241c8ff0c5216283ee1a6afa2ce096639e4ee8896579339a"
+  },
+  {
+   "bpm": 126.1,
+   "chart": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/e2e-off-c00-s0.dat",
+   "id": "generated/if_i_lose_myself/e2e-off-c00-s0",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "9e1cd8d8c75cd4335cf919d51e9be0417c76759496626293fa0aae64590d655a",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/results.json",
+   "timing_source_sha256": "5f6eb9a0736ba5978d863e910d3bb0bc7641922320bb3192a079dd587f4400f9"
+  },
+  {
+   "bpm": 126.1,
+   "chart": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/e2e-off-c01-s1.dat",
+   "id": "generated/if_i_lose_myself/e2e-off-c01-s1",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "78e4c029e4b7d5f24baacaf36dec814c42e5115d1c49251088239958a01a414b",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/results.json",
+   "timing_source_sha256": "5f6eb9a0736ba5978d863e910d3bb0bc7641922320bb3192a079dd587f4400f9"
+  },
+  {
+   "bpm": 126.1,
+   "chart": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/e2e-off-c02-s2.dat",
+   "id": "generated/if_i_lose_myself/e2e-off-c02-s2",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "f509cb1660bf201e088919afd0921c56abbdc017542fe156329b02f48326d86e",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/results.json",
+   "timing_source_sha256": "5f6eb9a0736ba5978d863e910d3bb0bc7641922320bb3192a079dd587f4400f9"
+  },
+  {
+   "bpm": 126.1,
+   "chart": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/e2e-off-c03-s3.dat",
+   "id": "generated/if_i_lose_myself/e2e-off-c03-s3",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "7eb9e40eedea8ccc2e1c69f7858c44a34bf51519bf37e6c8e6d864646516c6f2",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/results.json",
+   "timing_source_sha256": "5f6eb9a0736ba5978d863e910d3bb0bc7641922320bb3192a079dd587f4400f9"
+  },
+  {
+   "bpm": 126.1,
+   "chart": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/e2e-off-c04-s4.dat",
+   "id": "generated/if_i_lose_myself/e2e-off-c04-s4",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "a43a7513a8472e299c0186684a4f2f61b20b8e3e151ce618fbba273d930ca4e1",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/results.json",
+   "timing_source_sha256": "5f6eb9a0736ba5978d863e910d3bb0bc7641922320bb3192a079dd587f4400f9"
+  },
+  {
+   "bpm": 126.1,
+   "chart": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/e2e-off-c05-s5.dat",
+   "id": "generated/if_i_lose_myself/e2e-off-c05-s5",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "13e77c9db89d9312ac3a1442b1873238854487f84ff005cff555e89478a199c5",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/if_i_lose_myself/results.json",
+   "timing_source_sha256": "5f6eb9a0736ba5978d863e910d3bb0bc7641922320bb3192a079dd587f4400f9"
+  },
+  {
+   "bpm": 109.99999999999999,
+   "chart": "experiments/flow-v1/replay-ab-motion/numb/e2e-off-c00-s0.dat",
+   "id": "generated/numb/e2e-off-c00-s0",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "bf7c1382c37ea5f86b34f74caac43e0db9d5959be8bbe820e242d1a629b0511e",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/numb/results.json",
+   "timing_source_sha256": "b1222431c60f416a120f5a9af055058305e0f6c48ea3abbcbe6eafae422119e3"
+  },
+  {
+   "bpm": 109.99999999999999,
+   "chart": "experiments/flow-v1/replay-ab-motion/numb/e2e-off-c01-s1.dat",
+   "id": "generated/numb/e2e-off-c01-s1",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "2627248bcc821ae02d95b3cc8ec5b6ed064aa52dc611636c8305195c3c2617eb",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/numb/results.json",
+   "timing_source_sha256": "b1222431c60f416a120f5a9af055058305e0f6c48ea3abbcbe6eafae422119e3"
+  },
+  {
+   "bpm": 109.99999999999999,
+   "chart": "experiments/flow-v1/replay-ab-motion/numb/e2e-off-c02-s2.dat",
+   "id": "generated/numb/e2e-off-c02-s2",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "244de08e5bba83d794424fc4098e6e017dab3d3fc72fdb66a6141814b304eed5",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/numb/results.json",
+   "timing_source_sha256": "b1222431c60f416a120f5a9af055058305e0f6c48ea3abbcbe6eafae422119e3"
+  },
+  {
+   "bpm": 109.99999999999999,
+   "chart": "experiments/flow-v1/replay-ab-motion/numb/e2e-off-c03-s3.dat",
+   "id": "generated/numb/e2e-off-c03-s3",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "25ee8b586b1127dc6b761c073c15d70d9d14268daf0e55412482b5ea3735aec4",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/numb/results.json",
+   "timing_source_sha256": "b1222431c60f416a120f5a9af055058305e0f6c48ea3abbcbe6eafae422119e3"
+  },
+  {
+   "bpm": 109.99999999999999,
+   "chart": "experiments/flow-v1/replay-ab-motion/numb/e2e-off-c04-s4.dat",
+   "id": "generated/numb/e2e-off-c04-s4",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "88661b219bd8a2ba71992b7a6ca461ba58d36b6751f47fe9a8c67fae38b0c89b",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/numb/results.json",
+   "timing_source_sha256": "b1222431c60f416a120f5a9af055058305e0f6c48ea3abbcbe6eafae422119e3"
+  },
+  {
+   "bpm": 109.99999999999999,
+   "chart": "experiments/flow-v1/replay-ab-motion/numb/e2e-off-c05-s5.dat",
+   "id": "generated/numb/e2e-off-c05-s5",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "d648d2283fab15fdb76aa36934381d26a12a6a60e4e40ed9ae1525d29ad3a750",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/numb/results.json",
+   "timing_source_sha256": "b1222431c60f416a120f5a9af055058305e0f6c48ea3abbcbe6eafae422119e3"
+  },
+  {
+   "bpm": 122.5,
+   "chart": "experiments/flow-v1/replay-ab-motion/rather_be/e2e-off-c00-s0.dat",
+   "id": "generated/rather_be/e2e-off-c00-s0",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "52f1881aa69d46ef4e9824e4b211dac4b34ec6fe686123e036781855c5bd2a56",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/rather_be/results.json",
+   "timing_source_sha256": "e1527cb83371827ba8fe630cfb4284ba1bdbfb15767daf3c20daa28292822e93"
+  },
+  {
+   "bpm": 122.5,
+   "chart": "experiments/flow-v1/replay-ab-motion/rather_be/e2e-off-c01-s1.dat",
+   "id": "generated/rather_be/e2e-off-c01-s1",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "0a9069bc56d4d5dc1ed5ff9cccce50876d4eff47125eec260f3451da12bc216e",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/rather_be/results.json",
+   "timing_source_sha256": "e1527cb83371827ba8fe630cfb4284ba1bdbfb15767daf3c20daa28292822e93"
+  },
+  {
+   "bpm": 122.5,
+   "chart": "experiments/flow-v1/replay-ab-motion/rather_be/e2e-off-c02-s2.dat",
+   "id": "generated/rather_be/e2e-off-c02-s2",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "619ad29486a0ec26a7a432a72a64cf3f041b8e727eb788159792f1daa8c9c6f3",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/rather_be/results.json",
+   "timing_source_sha256": "e1527cb83371827ba8fe630cfb4284ba1bdbfb15767daf3c20daa28292822e93"
+  },
+  {
+   "bpm": 122.5,
+   "chart": "experiments/flow-v1/replay-ab-motion/rather_be/e2e-off-c03-s3.dat",
+   "id": "generated/rather_be/e2e-off-c03-s3",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "13a85132cf4a631cfc9a6824465b8d03499841b826ba963609d867ca6ef8b21b",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/rather_be/results.json",
+   "timing_source_sha256": "e1527cb83371827ba8fe630cfb4284ba1bdbfb15767daf3c20daa28292822e93"
+  },
+  {
+   "bpm": 122.5,
+   "chart": "experiments/flow-v1/replay-ab-motion/rather_be/e2e-off-c04-s4.dat",
+   "id": "generated/rather_be/e2e-off-c04-s4",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "5703178b2da6e61ea7d349e9040d2fb71888401b02bd59e9f5957f55a67b00c2",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/rather_be/results.json",
+   "timing_source_sha256": "e1527cb83371827ba8fe630cfb4284ba1bdbfb15767daf3c20daa28292822e93"
+  },
+  {
+   "bpm": 122.5,
+   "chart": "experiments/flow-v1/replay-ab-motion/rather_be/e2e-off-c05-s5.dat",
+   "id": "generated/rather_be/e2e-off-c05-s5",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "5f76e1da4fed20b824d5bc2c80f5b97279b6e7d6ade54db2a2746ef2a5f3a441",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/rather_be/results.json",
+   "timing_source_sha256": "e1527cb83371827ba8fe630cfb4284ba1bdbfb15767daf3c20daa28292822e93"
+  },
+  {
+   "bpm": 192.0,
+   "chart": "experiments/flow-v1/replay-ab-motion/still_waiting/e2e-off-c00-s0.dat",
+   "id": "generated/still_waiting/e2e-off-c00-s0",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "f52753004482a81241b17af9d80d6cffc9453f6196063431df556d9981356e09",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/still_waiting/results.json",
+   "timing_source_sha256": "72e8885049a758cd445560a17526f77f083dcec632be5eed14deda0d8cd69a90"
+  },
+  {
+   "bpm": 192.0,
+   "chart": "experiments/flow-v1/replay-ab-motion/still_waiting/e2e-off-c01-s1.dat",
+   "id": "generated/still_waiting/e2e-off-c01-s1",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "33cda38d43c95046955162e635055fb18a15b3c7e1f4baf42224171efdd9a813",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/still_waiting/results.json",
+   "timing_source_sha256": "72e8885049a758cd445560a17526f77f083dcec632be5eed14deda0d8cd69a90"
+  },
+  {
+   "bpm": 192.0,
+   "chart": "experiments/flow-v1/replay-ab-motion/still_waiting/e2e-off-c02-s2.dat",
+   "id": "generated/still_waiting/e2e-off-c02-s2",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "34eb419383d02137814a9c3514db74f5f6b8c6ad80ece0dfbdbc9b7ab962ab50",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/still_waiting/results.json",
+   "timing_source_sha256": "72e8885049a758cd445560a17526f77f083dcec632be5eed14deda0d8cd69a90"
+  },
+  {
+   "bpm": 192.0,
+   "chart": "experiments/flow-v1/replay-ab-motion/still_waiting/e2e-off-c03-s3.dat",
+   "id": "generated/still_waiting/e2e-off-c03-s3",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "e1bc4e9fd477190f093cfa13afdab96b5208b6812465474016a705f7a491ff80",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/still_waiting/results.json",
+   "timing_source_sha256": "72e8885049a758cd445560a17526f77f083dcec632be5eed14deda0d8cd69a90"
+  },
+  {
+   "bpm": 192.0,
+   "chart": "experiments/flow-v1/replay-ab-motion/still_waiting/e2e-off-c04-s4.dat",
+   "id": "generated/still_waiting/e2e-off-c04-s4",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "e1208cdba9879b0d55177e3a4086fc0763f5ffadc4a0673ed2c0b16ab040941b",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/still_waiting/results.json",
+   "timing_source_sha256": "72e8885049a758cd445560a17526f77f083dcec632be5eed14deda0d8cd69a90"
+  },
+  {
+   "bpm": 192.0,
+   "chart": "experiments/flow-v1/replay-ab-motion/still_waiting/e2e-off-c05-s5.dat",
+   "id": "generated/still_waiting/e2e-off-c05-s5",
+   "origin_s": 0,
+   "role": "generated",
+   "sha256": "1ae2ae20de45633a832bad05fa37372fbe93fc1a171d181340cacf3ff37c09bb",
+   "timing_source": "experiments/flow-v1/replay-ab-motion/still_waiting/results.json",
+   "timing_source_sha256": "72e8885049a758cd445560a17526f77f083dcec632be5eed14deda0d8cd69a90"
+  },
+  {
+   "bpm": 132.0,
+   "chart": "../beat-saber-map-gen/input/bytrius/12fbf (The Offspring - Hit That - Ryger)/Expert.dat",
+   "id": "human/hit_that_12fbf/Expert",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "e477c968f96e40df243585cbadec169822f30521ba8b7c6159b38a197e976a48",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "bpm": 132.0,
+   "chart": "../beat-saber-map-gen/input/bytrius/12fbf (The Offspring - Hit That - Ryger)/ExpertPlus.dat",
+   "id": "human/hit_that_12fbf/ExpertPlus",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "f0c50947a2eb82edc2e3bd7d31ea1602a904bdac79d5e401132e49ddac20f713",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "bpm": 132.0,
+   "chart": "../beat-saber-map-gen/input/bytrius/12fbf (The Offspring - Hit That - Ryger)/Hard.dat",
+   "id": "human/hit_that_12fbf/Hard",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "1fbf1ce89161765e92ff6586561c8d972ad80b6565d3359da3b93f685dc665dc",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "bpm": 110.0,
+   "chart": "../beat-saber-map-gen/input/bytrius/14059 (Numb - Linkin Park - Bytrius)/ExpertPlus.dat",
+   "id": "human/numb_14059/ExpertPlus",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "335e53bfbc6a08d322b61c4a4c171022decdf12e39eb7b3e45c3c67d663958dd",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "bpm": 148.0,
+   "chart": "../beat-saber-map-gen/input/bytrius/19909 (Rap God V2 - Ryger)/ExpertPlus.dat",
+   "id": "human/rap_god_19909/ExpertPlus",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "7736b8842119f136ebeaec7c46676d30631c36e0932d6d744ed43dec2b37c042",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "bpm": 260.0,
+   "chart": "../beat-saber-map-gen/input/input/25f (Reality Check Through The Skull - DM DOKURO)/ExpertPlus.dat",
+   "id": "human/reality_check_25f/ExpertPlus",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "9fc87a73a4f4cc0ff50f82ddaf6213edea2033775c796af3a9cad96a27796938",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "bpm": 260.0,
+   "chart": "../beat-saber-map-gen/input/input/3741 (Reality Check Through The Skull - JonathanRune)/ExpertPlus.dat",
+   "id": "human/reality_check_3741/ExpertPlus",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "e0ef93352162ec9bd043e2764e9ae71840217cab0dbebe9ce724f0fa7c6000d6",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "bpm": 160.0,
+   "chart": "../beat-saber-map-gen/input/input/24e5e (SPACEMAN - oegoe)/Expert.dat",
+   "id": "human/spaceman_24e5e/Expert",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "5e04fbf26fa059bd5eecc8ef3ea988bafbf8eed59fddf603febf776c64978147",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "bpm": 160.0,
+   "chart": "../beat-saber-map-gen/input/input/24e5e (SPACEMAN - oegoe)/ExpertPlus.dat",
+   "id": "human/spaceman_24e5e/ExpertPlus",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "2a66e208ebb0ce57dad4f1602fb944eda421443ce0492177a37c1f1104f703d7",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "bpm": 160.0,
+   "chart": "../beat-saber-map-gen/input/input/24e5e (SPACEMAN - oegoe)/Hard.dat",
+   "id": "human/spaceman_24e5e/Hard",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "28ff1fac40bf9d4210f0fe24903bfb20e427ddd7543ff6d26393eca403020855",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  },
+  {
+   "bpm": 160.0,
+   "chart": "../beat-saber-map-gen/input/input/24e5e (SPACEMAN - oegoe)/Normal.dat",
+   "id": "human/spaceman_24e5e/Normal",
+   "origin_s": 0,
+   "role": "reference",
+   "sha256": "212ad77d81a9692455263143b11e0c7e1f95e07357bb4658dca7b8b0f3a69be4",
+   "timing_source": "eval/benchmark.json",
+   "timing_source_sha256": "1bf3464078701e1f0204ee640b4efa3dc145aa6cb1b6652bd9a38c1a65fc0155"
+  }
+ ],
+ "expected_counts": {
+  "generated": 30,
+  "reference": 11
+ },
+ "expected_ids": [
+  "generated/FENT_TG/e2e-off-c00-s0",
+  "generated/FENT_TG/e2e-off-c01-s1",
+  "generated/FENT_TG/e2e-off-c02-s2",
+  "generated/FENT_TG/e2e-off-c03-s3",
+  "generated/FENT_TG/e2e-off-c04-s4",
+  "generated/FENT_TG/e2e-off-c05-s5",
+  "generated/if_i_lose_myself/e2e-off-c00-s0",
+  "generated/if_i_lose_myself/e2e-off-c01-s1",
+  "generated/if_i_lose_myself/e2e-off-c02-s2",
+  "generated/if_i_lose_myself/e2e-off-c03-s3",
+  "generated/if_i_lose_myself/e2e-off-c04-s4",
+  "generated/if_i_lose_myself/e2e-off-c05-s5",
+  "generated/numb/e2e-off-c00-s0",
+  "generated/numb/e2e-off-c01-s1",
+  "generated/numb/e2e-off-c02-s2",
+  "generated/numb/e2e-off-c03-s3",
+  "generated/numb/e2e-off-c04-s4",
+  "generated/numb/e2e-off-c05-s5",
+  "generated/rather_be/e2e-off-c00-s0",
+  "generated/rather_be/e2e-off-c01-s1",
+  "generated/rather_be/e2e-off-c02-s2",
+  "generated/rather_be/e2e-off-c03-s3",
+  "generated/rather_be/e2e-off-c04-s4",
+  "generated/rather_be/e2e-off-c05-s5",
+  "generated/still_waiting/e2e-off-c00-s0",
+  "generated/still_waiting/e2e-off-c01-s1",
+  "generated/still_waiting/e2e-off-c02-s2",
+  "generated/still_waiting/e2e-off-c03-s3",
+  "generated/still_waiting/e2e-off-c04-s4",
+  "generated/still_waiting/e2e-off-c05-s5",
+  "human/hit_that_12fbf/Expert",
+  "human/hit_that_12fbf/ExpertPlus",
+  "human/hit_that_12fbf/Hard",
+  "human/numb_14059/ExpertPlus",
+  "human/rap_god_19909/ExpertPlus",
+  "human/reality_check_25f/ExpertPlus",
+  "human/reality_check_3741/ExpertPlus",
+  "human/spaceman_24e5e/Expert",
+  "human/spaceman_24e5e/ExpertPlus",
+  "human/spaceman_24e5e/Hard",
+  "human/spaceman_24e5e/Normal"
+ ],
+ "frozen": "2026-09-18",
+ "missing": [],
+ "note": "Frozen wall-corridor audit panel. Generated: all 6 e2e-off candidates per Packet-B song (BPM from sibling results.json). Reference: 11 human charts from benchmark.json (BPM + sha256 from the frozen benchmark; hashes verified at build). origin_s=0 keeps each chart's own time origin. Missing/mismatched entries are recorded, not silently dropped.",
+ "schema_version": 1
+}

@@ -1,0 +1,380 @@
+{
+ "frozen": "2026-09-10",
+ "note": "Benchmark manifest (plan phase 0A). All entries are the dev split: every named reference has already influenced tuning.",
+ "todo": [
+  "expand: >=12 further held-out songs across punk/rock, metal, rap, EDM, pop, quiet/variable, with VERIFIED genre labels and Easy/Normal/Hard human ladders (needs curation, not guessed here)",
+  "freeze a sealed test split before threshold freezing (phase 5A)",
+  "development stress set: swing/triplets, tempo changes, quiet intros, weak upstream osu timing"
+ ],
+ "songs": [
+  {
+   "id": "latest/01_TANZNEID",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/01_TANZNEID",
+   "bpm": 174.0,
+   "audio": "song.egg",
+   "audio_sha256": "c6dc1996c03e7b48b71c648c85ca0ce8a73582317823100014489db25341989f",
+   "original_audio": "../../in/01. TANZNEID.mp3",
+   "original_audio_sha256": "c2e695df21a60e43838da393b8cb400e69df616aba58ccb1ed13719dc5d1a816",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "761593b13b1efcf3057b22e0094a4ccc56b5b77e3eaa6036421f252ad743c74b",
+    "ExpertPlus.dat": "eefad0cc43ddad83fcbbedccc235c656dd9fe1dc46e8f7e8a2c249e824908530",
+    "ExpertPlus2.dat": "93d943cc4791e4eb9d0008a2842d6e7a93b1f01884a85eefc6512350bce6c8bd",
+    "ExpertPlus3.dat": "6e6317390011e803a18563720d74889787cbae1f9b80c79bd561f2e72e6b43a6"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "latest/02_RATATATA",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/02_RATATATA",
+   "bpm": 140.0,
+   "audio": "song.egg",
+   "audio_sha256": "57c1796349556be4abd657f2337c5cb674a4b46172be178d95e0aa437a8e8092",
+   "original_audio": "../../in/02. RATATATA.mp3",
+   "original_audio_sha256": "4fb7764bbeec76a1f045c42ac2856c3a06d9e6903fa688d76318ebc9a2a902ba",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "cf59f859ef198f54fd27dc026f46eeb2a8dfbf49f40c815818128bbf4598cfb0",
+    "ExpertPlus.dat": "6b6bd545dbca126fe2a40835584c3037f96e7a83c8129f89a05ede7c654fc2e4",
+    "ExpertPlus2.dat": "f8dc1a05d96663c6d88cbee234a6b15184e01e347adf5436006aabaf06f7451d",
+    "ExpertPlus3.dat": "bd31ca136de4b0824e01b980c7381d5af9ffbe3d7a539d3dc1d725c790f08119"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "latest/03_Hypercharged",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/03_Hypercharged",
+   "bpm": 158.0,
+   "audio": "song.egg",
+   "audio_sha256": "3e826719e87c6adb4f8235a484b3e97ff59178922bd5131fc6fae423be74d201",
+   "original_audio": "../../in/03. Hypercharged.mp3",
+   "original_audio_sha256": "d60ef89a57099eae715b9678d740ee9449e2a3b5d69675497e8bc4a5e035b68b",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "e11569fd1b769bea475636a82372f969215ceec71fc7a25bde725f7cf7647b72",
+    "ExpertPlus.dat": "f53ab71b4f124a5672fb23ef32a45beb28872d887d50219231b99480b1493138",
+    "ExpertPlus2.dat": "1cd3ae1d6799308893ac246eeb7d2a54249ffe188b29452eaba7f5bd4d107122",
+    "ExpertPlus3.dat": "9dde4aef7d0c60d0200c223e9c84439a1a25cc3cb9a982ab5634f9b834a20362"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "latest/04_Let_The_Good_Times_Roll",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/04_Let_The_Good_Times_Roll",
+   "bpm": 143.0,
+   "audio": "song.egg",
+   "audio_sha256": "e4861e21ec57e589de2d0411886bde20ba14088f0e35e416bd9f0660d5d7e50e",
+   "original_audio": "../../in/04. Let The Good Times Roll.mp3",
+   "original_audio_sha256": "c427179a72af01dd53deb467e2dd6e866b2b3b8fb30f1b591aec5988275e1d03",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "0cee2a8ad714337f254a64b993a3f99062e05d61f8d7c281a5c54516c27ac399",
+    "ExpertPlus.dat": "3f9cd9df332073edc449bf8d42029fc07548f67542036edca49f011ce28870d6",
+    "ExpertPlus2.dat": "9f506366f21a559577e83923324b790732000c6de6ba845201d51589feff84a7",
+    "ExpertPlus3.dat": "9a9dd71cf106e99a1adab0d022c3517c1097685f47f850034a31acda8b7931c4"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "latest/05_Elevator_Operator",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/05_Elevator_Operator",
+   "bpm": 145.0,
+   "audio": "song.egg",
+   "audio_sha256": "db1aa7e32bd52c57ca19a3eb67be3b91d299af0677fea00e569241b21a8bee61",
+   "original_audio": "../../in/05. Elevator Operator.mp3",
+   "original_audio_sha256": "9659585972430eb104e2290773d4c42baf262adeba54dca013ee6b4f81ad7ebc",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "a905df65749b5b62e7485b1a4c535a5018e3d3035b7b1b5c11de54658367804b",
+    "ExpertPlus.dat": "ab2241de4f72ed91f31e30d5443566398c8cb25f2547284b82d31cf4c6989656",
+    "ExpertPlus2.dat": "b2e326e526e9fcdc4d23de29c592a5cd44a4ce4d059daa5a5675347021dd8e4d",
+    "ExpertPlus3.dat": "03bceb5c69bb6d39d9f9811cc3f63751548441e553ad3054692addcb227e2a25"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "latest/06_Heartclub",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/06_Heartclub",
+   "bpm": 220.0,
+   "audio": "song.egg",
+   "audio_sha256": "8cee4d62dee64a4cf480237c2f0867c57d7629a11b347e05ecfb878720c46d3f",
+   "original_audio": "../../in/06. Heartclub.mp3",
+   "original_audio_sha256": "0904276edc0d5c736b8d25fe83ffdbb6c3c03ac82a6e0a44b2cc1eb477587be5",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "a569ce6828aad7339e7c3cd96f8a494c80e821d0f74e3e805730566d21d67e00",
+    "ExpertPlus.dat": "d5d6f6c1cd233066bd29d90fe8d3418a7b37957149eef9ba8579d67f2ec12584",
+    "ExpertPlus2.dat": "8c4cfdeb4cbf3a48e0d12a91dd2061e3ccab36bf2db4dbd79557f9a4eec7c1c7",
+    "ExpertPlus3.dat": "f92bb6197d42d37d71e4271e90851b7e135c4f1534ff6fd9b1e05561d2beff75"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "latest/07_The_Way_You_Are",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/07_The_Way_You_Are",
+   "bpm": 96.0,
+   "audio": "song.egg",
+   "audio_sha256": "fc3a8622251cc21bde63c0809f9e461294738c5b93048fab4d5bea1a4ee496f2",
+   "original_audio": "../../in/07. The Way You Are.mp3",
+   "original_audio_sha256": "e97cf8cb809ee6c2c980145404ac868221a405e3f21552a7fa86ad7041539436",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "2aadca01d8a71ec19ac2e2ad6f96b1ab51c3f90ba3b7f251303fb2fdb05bdbca",
+    "ExpertPlus.dat": "2e2c9b763b792553f7f55e239b845bf1ec7e3b3caa66727a2bcc0aedba759644",
+    "ExpertPlus2.dat": "e92562e154b51f1e116823ccdf574657e5b7479a44deafa49143b2f1321657dd",
+    "ExpertPlus3.dat": "9f711ba243b16119b9caf7a9b3c35ae61077b32f971e4eac095015218475ef27"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "latest/08_Still_Waiting",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/08_Still_Waiting",
+   "bpm": 192.0,
+   "audio": "song.egg",
+   "audio_sha256": "038570bfa936b74e1c7955786402505a1cc28d19aa39060d26fbda57d8aaa535",
+   "original_audio": "../../in/08. Still Waiting.mp3",
+   "original_audio_sha256": "97d3f4e203a8aed1ca27ee8161934c87bd9ee8d05734b0aaa18949618e8da6fb",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "5ad3cb6ddc80b32095a5fbb00cd85591c003684feb7ccf71fe9520a9fa9c8157",
+    "ExpertPlus.dat": "374ff881862da77fc2aeca99e4b59e126c4f14d52d2a688ad2771aa2cc15c8ad",
+    "ExpertPlus2.dat": "2d1b8f1cee803dee2afc753d565442797c133ea9898f7842dac8b649cc6c293c",
+    "ExpertPlus3.dat": "b1490d57f4b5d8f2567a73681b957074a683898bcf6df8eab97776df856daa39"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "latest/09_The_Savior",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/09_The_Savior",
+   "bpm": 160.0,
+   "audio": "song.egg",
+   "audio_sha256": "190228416281ca283b8b95f82a9768caf8739d9976bf126f2995ecf3253efe65",
+   "original_audio": "../../in/09. The Savior.mp3",
+   "original_audio_sha256": "122f376cf39ace420d83a9792390f11a054e783526ff0f1f02fefb16dfd19a14",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "86f865661aa0a918fbac82cb8c8dedbd52fceab13f414c8926880928de69015c",
+    "ExpertPlus.dat": "e5a55e511d9ce69f08aaaaf0b7180b04cd7adb0cadab7c30fec020fb89b8fcc9",
+    "ExpertPlus2.dat": "969a57a9d0e58d3b3654c0824fcc274ab96f4c11d6420047d6c7bc37171ef98b",
+    "ExpertPlus3.dat": "d5a3f9529999c642aa01b8cc4d678c76edcf7d093e0d06e45e81ed5348775c62"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "latest/10_Revery",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/10_Revery",
+   "bpm": 158.0,
+   "audio": "song.egg",
+   "audio_sha256": "7a4996a51419d832eb728b64429a90a88450c5de4e8d1dea6d1f78f4b32cfe96",
+   "original_audio": "../../in/10. Revery.mp3",
+   "original_audio_sha256": "6759dbf35534fabed89e175ec28b6a9d97fd2edcad64df8d1c98e69e565a456d",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "18bebbd65a353ca9a98119f2c7b7788faca2d0e9bbc57f2e1daaf04a16cb628c",
+    "ExpertPlus.dat": "c7315292bf31fa94f635b1bf4bc7b8532c6f902dbf522982f5272e73dc2e30c7",
+    "ExpertPlus2.dat": "2a9e805b878a73eed3fe8f0fbf05e963932842931ee6b531739e8349de2aaad6",
+    "ExpertPlus3.dat": "206e3fc243ac9477d4e7e33ba18438a99c53bdccb5435266e3e8546413fd922c"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "latest/11_We_Got_the_Moves_Sullivan_King_Remix",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/11_We_Got_the_Moves_Sullivan_King_Remix",
+   "bpm": 150.0,
+   "audio": "song.egg",
+   "audio_sha256": "26bf19ac7d349b7f0e08049783f4a7b4e32a1b149c86b7ebe2a614465f3838e8",
+   "original_audio": "../../in/11. We Got the Moves (Sullivan King Remix).mp3",
+   "original_audio_sha256": "7dafd802b5293116902d4a68c788ca80c2544ac907b71f5b3f5dfac881276b3d",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "7997c5e7357bb2a430a010f77f490ee872bc9dbff93a65dbb77ff8da7d465ac9",
+    "ExpertPlus.dat": "6ec38963608791ac89ca4553c304a25f4c4ca230f702350ccc4c2ecaf7a005d0",
+    "ExpertPlus2.dat": "a8aa22e63f7976a52152dfc92fd635f1468e555d56d8d24e9456c33fb18f6d60",
+    "ExpertPlus3.dat": "7c4dfd94464ecd13ad8b4750f2d4f7f834a66debd8918ddf294928413250e9d7"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "latest/13_Hypercharged_Paul_Elstak_Remix",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/13_Hypercharged_Paul_Elstak_Remix",
+   "bpm": 170.0,
+   "audio": "song.egg",
+   "audio_sha256": "4c63b70bf3ca6028b0868ef2dd0e6d1b66e7c3822cbcdfe057d8f24ce6f5f85e",
+   "original_audio": "../../in/13. Hypercharged (Paul Elstak Remix).mp3",
+   "original_audio_sha256": "0f4e1d268aa994fb7636d3434d62a5e5e8bbbb94c3186da1962f7bc029b6470c",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "8e571863ee01eddd662f26973f5986418f495123b3e927a077c5a81d77e27a8e",
+    "ExpertPlus.dat": "387df75820aae61b74bd1e0a0c6b5895d5b993251735ee1945e81ed55097032d",
+    "ExpertPlus2.dat": "23d0620887cc7219c6cc72b5ca81ab01cf2d2851ba265b53ce835340d4cd74c6",
+    "ExpertPlus3.dat": "1876a7136bd1153074feddfb3ed3f1a264d6de47b6d1bdfd4097c90dc5e0cf2a"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "latest/14_Revery_Sullivan_King_Remix",
+   "kind": "latest_export",
+   "split": "dev",
+   "dir": "out/14_Revery_Sullivan_King_Remix",
+   "bpm": 150.0,
+   "audio": "song.egg",
+   "audio_sha256": "7d0f141644a5c0165c7c0141073f90599072dbfb003e6ae68c71af9f4991ac94",
+   "original_audio": "../../in/14. Revery (Sullivan King Remix).mp3",
+   "original_audio_sha256": "aff1a70419d40226a37277a4c2360c0b11bca38997fda010d35e32ade049b9d6",
+   "source_osu": null,
+   "difficulties": {
+    "Expert.dat": "faabf95c2710492dbda087d2dd3634a69a14dc953d2949f4780e4bc535db1cf7",
+    "ExpertPlus.dat": "c1baabc7a0501cccee47f272dd18f4e5ba371fdb3b00ff7ec147092b81a4cb03",
+    "ExpertPlus2.dat": "101e4f57367368764c076048a8a401981655b5cc0e12ce0dbbb49c9612687849",
+    "ExpertPlus3.dat": "2ab5572076e57b544b193c807e133987a07356a8871d73ca29ed13fbde5548d5"
+   },
+   "provenance": "historical desktop export 2026-09-09; no retained .osu, generation config unproven; song.egg may be trimmed/padded vs original_audio"
+  },
+  {
+   "id": "human/rap_god_19909",
+   "kind": "human",
+   "split": "dev",
+   "dir": "../beat-saber-map-gen/input/bytrius/19909 (Rap God V2 - Ryger)",
+   "bpm": 148,
+   "audio": "01 Rap God.egg",
+   "audio_sha256": "ffffc9bb09f22b49ac78f7e39b810950b1be6b0e3bf94110aaf8a89430c18560",
+   "difficulties": {
+    "ExpertPlus.dat": "7736b8842119f136ebeaec7c46676d30631c36e0932d6d744ed43dec2b37c042"
+   },
+   "provenance": "hand-mapped reference; already used for tuning (development material, NOT a sealed test set)"
+  },
+  {
+   "id": "human/reality_check_25f",
+   "kind": "human",
+   "split": "dev",
+   "dir": "../beat-saber-map-gen/input/input/25f (Reality Check Through The Skull - DM DOKURO)",
+   "bpm": 260,
+   "audio": "RCTTS.egg",
+   "audio_sha256": "4e26b51320e220fca53f7ce27ee5bbddf4aa9d4c644a22bf0e8d59ad044f647e",
+   "difficulties": {
+    "ExpertPlus.dat": "9fc87a73a4f4cc0ff50f82ddaf6213edea2033775c796af3a9cad96a27796938"
+   },
+   "provenance": "hand-mapped reference; already used for tuning (development material, NOT a sealed test set)"
+  },
+  {
+   "id": "human/reality_check_3741",
+   "kind": "human",
+   "split": "dev",
+   "dir": "../beat-saber-map-gen/input/input/3741 (Reality Check Through The Skull - JonathanRune)",
+   "bpm": 260,
+   "audio": "RCTTS.egg",
+   "audio_sha256": "4e26b51320e220fca53f7ce27ee5bbddf4aa9d4c644a22bf0e8d59ad044f647e",
+   "difficulties": {
+    "ExpertPlus.dat": "e0ef93352162ec9bd043e2764e9ae71840217cab0dbebe9ce724f0fa7c6000d6"
+   },
+   "provenance": "hand-mapped reference; already used for tuning (development material, NOT a sealed test set)"
+  },
+  {
+   "id": "human/spaceman_24e5e",
+   "kind": "human",
+   "split": "dev",
+   "dir": "../beat-saber-map-gen/input/input/24e5e (SPACEMAN - oegoe)",
+   "bpm": 160,
+   "audio": "song.egg",
+   "audio_sha256": "8e4d71e2272f935fa9a25d33cb35475f76e9c15ca383c88acdf1d36df3ca37bf",
+   "difficulties": {
+    "Expert.dat": "5e04fbf26fa059bd5eecc8ef3ea988bafbf8eed59fddf603febf776c64978147",
+    "ExpertPlus.dat": "2a66e208ebb0ce57dad4f1602fb944eda421443ce0492177a37c1f1104f703d7",
+    "Hard.dat": "28ff1fac40bf9d4210f0fe24903bfb20e427ddd7543ff6d26393eca403020855",
+    "Normal.dat": "212ad77d81a9692455263143b11e0c7e1f95e07357bb4658dca7b8b0f3a69be4"
+   },
+   "provenance": "hand-mapped reference; already used for tuning (development material, NOT a sealed test set)"
+  },
+  {
+   "id": "human/numb_14059",
+   "kind": "human",
+   "split": "dev",
+   "dir": "../beat-saber-map-gen/input/bytrius/14059 (Numb - Linkin Park - Bytrius)",
+   "bpm": 110,
+   "audio": "song.egg",
+   "audio_sha256": "cee0c3a3ebdc0ffa5a36b2ad366e86f4e2b62976410e5d9474b04fd0474da15b",
+   "difficulties": {
+    "ExpertPlus.dat": "335e53bfbc6a08d322b61c4a4c171022decdf12e39eb7b3e45c3c67d663958dd"
+   },
+   "provenance": "hand-mapped reference; already used for tuning (development material, NOT a sealed test set)"
+  },
+  {
+   "id": "human/hit_that_12fbf",
+   "kind": "human",
+   "split": "dev",
+   "dir": "../beat-saber-map-gen/input/bytrius/12fbf (The Offspring - Hit That - Ryger)",
+   "bpm": 132,
+   "audio": "The Offspring - Hit That.egg",
+   "audio_sha256": "ae628952fedb4956a158882a7b6f5fa14e781b68d68a9259d68d0b4997bfb86b",
+   "difficulties": {
+    "Expert.dat": "e477c968f96e40df243585cbadec169822f30521ba8b7c6159b38a197e976a48",
+    "ExpertPlus.dat": "f0c50947a2eb82edc2e3bd7d31ea1602a904bdac79d5e401132e49ddac20f713",
+    "Hard.dat": "1fbf1ce89161765e92ff6586561c8d972ad80b6565d3359da3b93f685dc665dc"
+   },
+   "provenance": "hand-mapped reference; already used for tuning (development material, NOT a sealed test set)"
+  },
+  {
+   "id": "stored_gen/rap_god",
+   "kind": "stored_gen",
+   "split": "dev",
+   "dir": "eval/rap_god",
+   "bpm": 148.0,
+   "source_osu": "gen.osu",
+   "source_osu_sha256": "d938a17e016a05bfe8f6190c68f2c0a82897dd4b9d34ff62176ac7dda47955e6",
+   "difficulties": {
+    "gen.dat": "16274c3e86d2fa49f3d925cf82177cc098d69bc5ff7358207cfe9b8e6ecee5b5"
+   },
+   "provenance": "historical eval_compare output, uncertified config; walls omitted by the comparison script \u2014 wall counts are 'not recorded', not zero"
+  },
+  {
+   "id": "stored_gen/reality_check",
+   "kind": "stored_gen",
+   "split": "dev",
+   "dir": "eval/reality_check",
+   "bpm": 130.0,
+   "source_osu": "gen.osu",
+   "source_osu_sha256": "e7650bea70188cad43181452a678385b31a9aad1aa671ceb74d3bed02e28b746",
+   "difficulties": {
+    "gen.dat": "073240e54dc2f741b7cf4c788f04c7e3338f05024d29a813d761be0c711e7409"
+   },
+   "provenance": "historical eval_compare output, uncertified config; walls omitted by the comparison script \u2014 wall counts are 'not recorded', not zero"
+  },
+  {
+   "id": "stored_gen/spaceman",
+   "kind": "stored_gen",
+   "split": "dev",
+   "dir": "eval/spaceman",
+   "bpm": 178.0,
+   "source_osu": "gen.osu",
+   "source_osu_sha256": "8dead531c8acc436b6c2458d77ded025e4003a122a5f4968168256816af342ec",
+   "difficulties": {
+    "gen.dat": "087da1005a0760ed8e98fa4639a94900400631fac5fe2837ef83249720a851b4"
+   },
+   "provenance": "historical eval_compare output, uncertified config; walls omitted by the comparison script \u2014 wall counts are 'not recorded', not zero"
+  }
+ ]
+}

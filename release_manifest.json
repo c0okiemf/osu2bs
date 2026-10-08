@@ -1,0 +1,33 @@
+{
+ "artifacts": {
+  "condflow.pt": "b152bf31be7f71652041fc1571c9f1390388d78a81ff6767be95939d5a1acb3c",
+  "planner.pt": "82981f5bb51b0ece938e440e64bb94e3ff04298a78f6f4b10429bd3b9caeab2b",
+  "pref_model.pt": "c9e635c82aec85742c90dd77b8dbfa0a19638d07656a0c884e6dec39a24522c4"
+ },
+ "c_confirmation": "recorded FAIL under the frozen Q5 contract; this release is a post-confirmation product-scope amendment, disclosed",
+ "claims": [
+  "C-confirmed motion flag reduction (CI excludes zero)",
+  "C-confirmed pair-exposure reduction (CI excludes zero)"
+ ],
+ "non_claims": [
+  "variety (C: -15.2% vs >=20% gate, CI includes zero)",
+  "style personality (vocabulary neutral K=1)",
+  "achieved workload (calibration descriptive only)"
+ ],
+ "policy": "bundle-v1",
+ "request": [
+  0.416224,
+  0.225639,
+  1.19454,
+  1.249214,
+  0.472205,
+  0.409959,
+  0.555596,
+  0.050094,
+  0.369533,
+  0.171126
+ ],
+ "rollback": "python -m quality_policy rollback",
+ "scope": "motion-and-variety geometry bundle, SCOPED release",
+ "version": 1
+}
