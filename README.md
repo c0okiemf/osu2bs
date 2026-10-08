@@ -10,6 +10,8 @@ custom Expert++/+++ tiers).
 
 ## The app
 
+<img src="docs/app-screenshot.png" alt="osu2bs desktop app showing difficulty selection, output options, and the generation queue" width="640">
+
 Grab the [latest release](../../releases/latest): `osu2bs.exe` (Windows,
 WebView2 preinstalled on 10/11) or `osu2bs.AppImage` (Linux). First launch
 detects your GPU, asks where to run inference, and downloads the engine

@@ -23,7 +23,7 @@ window.__TAURI__ = {
   window: { getCurrentWindow: () => ({ close() {}, minimize() {}, toggleMaximize() {} }) },
 };
 window.addEventListener("load", () => setTimeout(() => {
-  addFiles(["C:/Music/Montagem Supersonic.mp3", "C:/Music/Rizzstag Anthem.mp3"]);
+  addFiles(["C:/Music/Electric Callboy - RATATATA.mp3", "C:/Music/Electric Callboy - WE GOT THE MOVES.mp3"]);
   setTimeout(() => {
     state.active = 0;
     state.queue[0].status = "Charting Expert+…";
