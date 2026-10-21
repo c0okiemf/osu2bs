@@ -31,6 +31,8 @@ const state = {
   outDir: S.get("outDir", ""),
   genDirs: S.get("genDirs", true),
   genZips: S.get("genZips", false),
+  redo: S.get("redo", false),
+  stopping: false,
   stars: S.get("stars", "5.5"),
   showLog: S.get("showLog", false),
   plName: S.get("plName", ""),
@@ -73,6 +75,7 @@ $("winMax").onclick = () => win.toggleMaximize();
   $("logRow").hidden = !state.showLog;
   $("genDirs").checked = state.genDirs;
   $("genZips").checked = state.genZips;
+  $("redo").checked = state.redo;
   $("plName").value = state.plName;
   renderOutDir();
   renderChips();
@@ -90,6 +93,7 @@ async function refreshSetup() {
     ? "Everything runs locally on " + deviceName(st.device)
     : "";
   $("mainView").hidden = !st.complete;
+  $("genBar").hidden = !st.complete;
   $("setupView").hidden = st.complete;
   if (!st.complete) renderSetup(st);
   return st.complete;
@@ -178,6 +182,7 @@ $("setupBtn").onclick = () => {
 $("setupAgainBtn").onclick = async () => {
   closeSheet();
   $("mainView").hidden = true;
+  $("genBar").hidden = true;
   $("setupView").hidden = false;
   renderSetup(await invoke("setup_status", { engine: state.engine }));
 };
@@ -243,6 +248,7 @@ async function pickOutDir() {
   return !!state.outDir;
 }
 $("outDirBtn").onclick = pickOutDir;
+$("redo").onchange = () => { state.redo = $("redo").checked; S.set("redo", state.redo); };
 
 for (const [id, key, other] of [["genDirs", "genDirs", "genZips"],
                                 ["genZips", "genZips", "genDirs"]]) {
@@ -258,9 +264,16 @@ for (const [id, key, other] of [["genDirs", "genDirs", "genZips"],
 
 /* ---------- file intake ---------- */
 const AUDIO = /\.(mp3|ogg|wav|m4a|flac|egg)$/i;
+// Unicode-aware (ASCII \w collapsed every Cyrillic title to "-"), length-capped,
+// and unique within the queue so two songs never share an output folder.
 function slug(name) {
-  return name.replace(/\.[^.]+$/, "").replace(/[^\w\s-]/g, "").trim()
-    .replace(/\s+/g, "_") || "song";
+  const base = name.normalize("NFC").replace(/\.[^.]+$/, "")
+    .replace(/[^\p{L}\p{N}\p{M}_\s-]/gu, "").trim().replace(/\s+/g, "_")
+    .slice(0, 100).replace(/^[_-]+|[_-]+$/g, "") || "song";
+  let s = base;
+  for (let n = 2; state.queue.some((q) => q.slug.toLowerCase() === s.toLowerCase()); n++)
+    s = `${base}_${n}`;
+  return s;
 }
 async function addFiles(paths) {
   const files = [];
@@ -354,7 +367,12 @@ function onLine(line) {
 /* ---------- generation ---------- */
 let unlisteners = [];
 async function generate() {
-  if (state.running) { await invoke("cancel_pipeline"); return; }
+  if (state.running) {
+    state.stopping = true;       // the in-flight song restarts on resume
+    $("goBtn").disabled = true;
+    await invoke("cancel_pipeline");
+    return;
+  }
   if (!state.outDir && !(await pickOutDir())) return;
   state.running = true;
   $("goBtn").textContent = "Stop";
@@ -369,7 +387,14 @@ async function generate() {
 
   for (let i = 0; i < state.queue.length; i++) {
     const q = state.queue[i];
+    if (state.stopping) break;
     if (q.done) continue;
+    if (!state.redo && await invoke("output_done", { outDir: state.outDir, slug: q.slug,
+        dirs: state.genDirs, zips: state.genZips }).catch(() => false)) {
+      q.done = true; q.phase = 100; q.status = "Already generated";
+      renderQueue();
+      continue;
+    }
     state.active = i;
     q.status = "Preparing…"; q.phase = 5; q.err = false;
     q.soft = false; q.lastErr = "";
@@ -380,10 +405,11 @@ async function generate() {
       if (playlist) args.push("--playlist", playlist);
       const code = await new Promise(async (resolve, reject) => {
         const un = await T.event.listen("pipeline-done", (e) => { un(); resolve(e.payload); });
-        invoke("run_pipeline", { engine: state.engine, device: state.device,
-                                 args }).catch((err) => { un(); reject(err); });
+        invoke("run_pipeline", { engine: state.engine, device: state.device, args })
+          .then(() => state.stopping && invoke("cancel_pipeline"))  // Stop raced the spawn
+          .catch((err) => { un(); reject(err); });
       });
-      if (!state.running) { q.status = "Stopped"; break; }
+      if (state.stopping) { q.status = "Stopped — restarts on resume"; q.phase = 0; break; }
       if (code === 0) {
         await invoke("finalize_output", { outDir: state.outDir, slug: q.slug,
           keepDirs: state.genDirs, keepZips: state.genZips }).catch(() => {});
@@ -406,7 +432,9 @@ async function generate() {
   }
   state.active = -1;
   state.running = false;
-  $("goBtn").textContent = "Generate";
+  const stopped = state.stopping;
+  state.stopping = false;
+  $("goBtn").textContent = stopped ? "Resume" : "Generate";
   $("goBtn").classList.remove("stop");
   $("goBtn").disabled = !state.queue.some((q) => !q.done);
   unlisteners.forEach((u) => u());

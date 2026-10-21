@@ -462,6 +462,11 @@ fn run_pipeline(
     all.extend(args);
     let mut cmd = engine_cmd(&engine, &device, &all);
     cmd.stdout(Stdio::piped()).stderr(Stdio::piped());
+    #[cfg(unix)]
+    {
+        use std::os::unix::process::CommandExt;
+        cmd.process_group(0); // so cancel can kill inference.py too
+    }
     let mut child = cmd.spawn().map_err(|e| e.to_string())?;
     let stdout = child.stdout.take().unwrap();
     let stderr = child.stderr.take().unwrap();
@@ -491,7 +496,7 @@ fn run_pipeline(
                 let _ = handle.emit("pipeline-done", status.code().unwrap_or(-1));
                 break;
             }
-            None => break, // cancelled
+            None => break,
             _ => {}
         }
     });
@@ -500,9 +505,33 @@ fn run_pipeline(
 
 #[tauri::command]
 fn cancel_pipeline(job: State<Job>) {
-    if let Some(mut child) = job.0.lock().unwrap().take() {
+    // run.py spawns inference.py: killing only run.py left the GPU busy.
+    // The child stays in the slot so the watcher still emits pipeline-done.
+    if let Some(child) = job.0.lock().unwrap().as_mut() {
+        let pid = child.id().to_string();
+        #[cfg(windows)]
+        {
+            use std::os::windows::process::CommandExt;
+            let _ = Command::new("taskkill").args(["/T", "/F", "/PID", &pid])
+                .creation_flags(0x0800_0000).status();
+        }
+        #[cfg(unix)]
+        let _ = Command::new("kill").args(["-KILL", &format!("-{pid}")]).status();
         let _ = child.kill();
     }
+}
+
+/// True when every requested artifact of a previous run is complete. A map
+/// folder still holding .osu sources was never finalized (crashed/stopped).
+#[tauri::command]
+fn output_done(out_dir: String, slug: String, dirs: bool, zips: bool) -> bool {
+    let base = PathBuf::from(&out_dir);
+    let map = base.join(&slug);
+    let dir_ok = map.join("Info.dat").is_file()
+        && std::fs::read_dir(&map).map(|rd| rd.flatten().all(|e| {
+            !e.file_name().to_string_lossy().ends_with(".osu")
+        })).unwrap_or(false);
+    (!dirs || dir_ok) && (!zips || base.join(format!("{slug}.zip")).is_file())
 }
 
 /* ------------------------- misc ------------------------- */
@@ -586,6 +615,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             run_pipeline,
             cancel_pipeline,
+            output_done,
             finalize_output,
             expand_dir,
             setup_status,

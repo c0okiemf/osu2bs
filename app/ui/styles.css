@@ -390,3 +390,22 @@ main {
 }
 
 [hidden] { display: none !important; }
+
+/* ---- generate controls: pinned to the window bottom while scrolling ---- */
+#mainView { padding-bottom: 120px; }
+.genbar {
+  position: fixed; left: 50%; bottom: 16px; z-index: 5;
+  width: min(calc(100% - 40px), calc(var(--content-w) - 40px));
+  transform: translateX(-50%);
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 10px 10px 18px; border-radius: 100px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  backdrop-filter: saturate(180%) blur(24px);
+  box-shadow: var(--shadow);
+}
+.genbar .cta { margin-top: 0; flex: 1; }
+.redo {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  color: var(--text2); font-size: 14px; white-space: nowrap;
+}

@@ -116,7 +116,6 @@
     </div>
   </section>
 
-  <button class="cta" id="goBtn" disabled>Generate</button>
 
   <p class="section-label" id="queueLabel" hidden>Queue</p>
   <section class="card" id="queueCard" hidden>
@@ -125,6 +124,13 @@
 
   <p class="foot" id="footNote"></p>
 </main>
+<div class="genbar" id="genBar">
+  <label class="redo" title="Regenerate songs whose output already exists">
+    <span>Redo finished</span>
+    <span class="switch"><input type="checkbox" id="redo"><span></span></span>
+  </label>
+  <button class="cta" id="goBtn" disabled>Generate</button>
+</div>
 </div>
 
 <div class="sheet-backdrop" id="sheetBack" hidden></div>

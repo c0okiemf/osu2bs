@@ -59,6 +59,14 @@ def _slug(s):
     return _clean(s).replace(" ", "_")
 
 
+def _hydra_str(s):
+    """Quote any string as a hydra override value, verbatim. Unquoted values
+    only lex ASCII, so non-English titles or a non-ASCII Windows username in
+    the temp path killed inference before it started."""
+    s = re.sub(r"(\\*)('|$)", lambda m: m[1] * 2 + ("\\'" if m[2] else ""), str(s))
+    return "'" + s.replace("${", "\\${") + "'"
+
+
 def add_to_playlist(name, mapdir, parent):
     """Append the map in mapdir to <parent>/<slug(name)>.bplist (deduped by hash)."""
     mapdir = Path(mapdir)
@@ -94,10 +102,10 @@ def generate_osu(song, work, stars, hydra_dev, env, title):
     work.mkdir()
     proc = subprocess.Popen(
         [str(PY), "inference.py", "-cn", "v32",
-         f"audio_path={song}", f"output_path={work}",
+         "audio_path=" + _hydra_str(song), "output_path=" + _hydra_str(work),
          "gamemode=0", f"difficulty={stars}", "export_osz=false",
-         hydra_dev, "title=" + _clean(title),
-         "hydra.run.dir=" + str(work / "logs")], cwd=MAPPER, env=env)
+         hydra_dev, "title=" + _hydra_str(title),
+         "hydra.run.dir=" + _hydra_str(work / "logs")], cwd=MAPPER, env=env)
     threading.Thread(target=_watchdog, args=(proc,), daemon=True).start()
     if proc.wait() != 0:
         raise RuntimeError("upstream inference failed")
@@ -144,7 +152,8 @@ def main(audio, outdir=None, difficulty="5.5", playlist=None, force=False,
     outdir = Path(outdir or audio.with_suffix("")).resolve()
     with tempfile.TemporaryDirectory() as td:
         work = Path(td)
-        song = work / ("song" + (".ogg" if audio.suffix == ".egg" else audio.suffix))
+        ext = audio.suffix.lower()  # SONG.EGG is still ogg
+        song = work / ("song" + (".ogg" if ext == ".egg" else ext))
         try:
             song.symlink_to(audio)
         except OSError:  # Windows without dev-mode: no symlinks
