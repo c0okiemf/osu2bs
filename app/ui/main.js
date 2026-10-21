@@ -22,7 +22,12 @@ const S = {
 };
 
 const state = {
-  queue: [],           // {path, name, slug, status, phase, done, err}
+  // {path, name, slug, status, phase, done, err}; survives app restarts
+  queue: S.get("queue", []).map((q) => ({ ...q, phase: q.done ? 100 : 0,
+    soft: false, retried: false, lastErr: "",
+    // anything mid-run when the app closed counts as paused
+    status: q.done || q.err || ["Ready", "Stopped"].includes(q.status) ? q.status : "Paused" })),
+  paused: S.get("paused", false),  // a run was paused or the app closed mid-run
   running: false,
   active: -1,
   diffs: new Set(S.get("diffs", ["ExpertPlus"])),
@@ -32,7 +37,7 @@ const state = {
   genDirs: S.get("genDirs", true),
   genZips: S.get("genZips", false),
   redo: S.get("redo", false),
-  stopping: false,
+  halt: null,          // "pause" keeps the song's finished tiers, "stop" discards them
   stars: S.get("stars", "5.5"),
   showLog: S.get("showLog", false),
   plName: S.get("plName", ""),
@@ -77,6 +82,10 @@ $("winMax").onclick = () => win.toggleMaximize();
   $("genZips").checked = state.genZips;
   $("redo").checked = state.redo;
   $("plName").value = state.plName;
+  $("plToggle").checked = S.get("plOn", true);
+  $("plToggle").onchange();
+  renderQueue();
+  setGoLabel();
   renderOutDir();
   renderChips();
   renderPlus();
@@ -310,6 +319,8 @@ $("pickDirBtn").onclick = async () => {
 
 /* ---------- queue rendering ---------- */
 function renderQueue() {
+  S.set("queue", state.queue.map(({ path, name, slug, status, done, err }) =>
+    ({ path, name, slug, status, done, err })));
   const any = state.queue.length > 0;
   $("queueLabel").hidden = !any;
   $("queueCard").hidden = !any;
@@ -367,16 +378,13 @@ function onLine(line) {
 /* ---------- generation ---------- */
 let unlisteners = [];
 async function generate() {
-  if (state.running) {
-    state.stopping = true;       // the in-flight song restarts on resume
-    $("goBtn").disabled = true;
-    await invoke("cancel_pipeline");
-    return;
-  }
+  if (state.running) return halt("pause");
   if (!state.outDir && !(await pickOutDir())) return;
   state.running = true;
-  $("goBtn").textContent = "Stop";
-  $("goBtn").classList.add("stop");
+  state.paused = true; S.set("paused", true);  // until the run completes
+  $("clearBtn").disabled = true;
+  $("goBtn").textContent = "Pause";
+  $("stopBtn").hidden = false;
   const diffs = chosenDiffs().join(",");
   const playlist = $("plToggle").checked
     ? ($("plName").value.trim() || "osu2bs")
@@ -387,7 +395,7 @@ async function generate() {
 
   for (let i = 0; i < state.queue.length; i++) {
     const q = state.queue[i];
-    if (state.stopping) break;
+    if (state.halt) break;
     if (q.done) continue;
     if (!state.redo && await invoke("output_done", { outDir: state.outDir, slug: q.slug,
         dirs: state.genDirs, zips: state.genZips }).catch(() => false)) {
@@ -406,10 +414,15 @@ async function generate() {
       const code = await new Promise(async (resolve, reject) => {
         const un = await T.event.listen("pipeline-done", (e) => { un(); resolve(e.payload); });
         invoke("run_pipeline", { engine: state.engine, device: state.device, args })
-          .then(() => state.stopping && invoke("cancel_pipeline"))  // Stop raced the spawn
+          .then(() => state.halt && invoke("cancel_pipeline"))  // halt raced the spawn
           .catch((err) => { un(); reject(err); });
       });
-      if (state.stopping) { q.status = "Stopped — restarts on resume"; q.phase = 0; break; }
+      if (state.halt) {
+        q.phase = 0;
+        q.status = state.halt === "pause" ? "Paused" : "Stopped";
+        if (state.halt === "stop") await discard(q);
+        break;
+      }
       if (code === 0) {
         await invoke("finalize_output", { outDir: state.outDir, slug: q.slug,
           keepDirs: state.genDirs, keepZips: state.genZips }).catch(() => {});
@@ -432,16 +445,40 @@ async function generate() {
   }
   state.active = -1;
   state.running = false;
-  const stopped = state.stopping;
-  state.stopping = false;
-  $("goBtn").textContent = stopped ? "Resume" : "Generate";
-  $("goBtn").classList.remove("stop");
-  $("goBtn").disabled = !state.queue.some((q) => !q.done);
+  state.paused = state.halt === "pause"; S.set("paused", state.paused);
+  state.halt = null;
+  $("clearBtn").disabled = false;
+  setGoLabel();
   unlisteners.forEach((u) => u());
   unlisteners = [];
   renderQueue();
 }
 $("goBtn").onclick = generate;
+function setGoLabel() {
+  $("goBtn").textContent = state.paused ? "Resume" : "Generate";
+  $("goBtn").disabled = !state.queue.some((q) => !q.done);
+  $("stopBtn").hidden = !state.paused;
+}
+async function halt(kind) {
+  state.halt = kind;
+  $("goBtn").disabled = $("stopBtn").disabled = true;
+  await invoke("cancel_pipeline");
+  $("stopBtn").disabled = false;
+}
+const discard = (q) => invoke("discard_partial", { outDir: state.outDir, slug: q.slug })
+  .catch(() => {});
+$("stopBtn").onclick = async () => {
+  if (state.running) return halt("stop");
+  for (const q of state.queue)       // abandon a paused run: drop its partial song
+    if (q.status === "Paused") { await discard(q); q.status = "Stopped"; }
+  state.paused = false; S.set("paused", false);
+  renderQueue(); setGoLabel();
+};
+$("clearBtn").onclick = () => {
+  if (state.running) return;
+  state.queue = []; state.paused = false; S.set("paused", false);
+  renderQueue(); setGoLabel();
+};
 
 /* ---------- settings sheet ---------- */
 function openSheet() {
@@ -460,4 +497,7 @@ function closeSheet() {
 $("settingsBtn").onclick = openSheet;
 $("sheetDone").onclick = closeSheet;
 $("sheetBack").onclick = closeSheet;
-$("plToggle").onchange = () => { $("plNameRow").style.display = $("plToggle").checked ? "" : "none"; };
+$("plToggle").onchange = () => {
+  $("plNameRow").style.display = $("plToggle").checked ? "" : "none";
+  S.set("plOn", $("plToggle").checked);
+};

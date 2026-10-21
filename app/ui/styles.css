@@ -409,3 +409,6 @@ main {
   display: flex; align-items: center; gap: 10px; cursor: pointer;
   color: var(--text2); font-size: 14px; white-space: nowrap;
 }
+.queue-head { display: flex; justify-content: space-between; align-items: center; }
+.queue-head .small-tint:disabled { opacity: 0.4; cursor: default; }
+.genbar .cta.stop { flex: none; width: auto; padding-left: 26px; padding-right: 26px; }

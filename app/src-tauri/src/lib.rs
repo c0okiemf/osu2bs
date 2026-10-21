@@ -505,6 +505,10 @@ fn run_pipeline(
 
 #[tauri::command]
 fn cancel_pipeline(job: State<Job>) {
+    kill_job(&job);
+}
+
+fn kill_job(job: &Job) {
     // run.py spawns inference.py: killing only run.py left the GPU busy.
     // The child stays in the slot so the watcher still emits pipeline-done.
     if let Some(child) = job.0.lock().unwrap().as_mut() {
@@ -518,6 +522,24 @@ fn cancel_pipeline(job: State<Job>) {
         #[cfg(unix)]
         let _ = Command::new("kill").args(["-KILL", &format!("-{pid}")]).status();
         let _ = child.kill();
+    }
+}
+
+/// Stop (unlike pause) drops a song's unfinished tiers; a folder that never
+/// got as far as a playable map goes entirely.
+#[tauri::command]
+fn discard_partial(out_dir: String, slug: String) {
+    let map = PathBuf::from(&out_dir).join(&slug);
+    if let Ok(rd) = std::fs::read_dir(&map) {
+        for e in rd.flatten() {
+            let n = e.file_name().to_string_lossy().to_string();
+            if n.ends_with(".osu") || n.ends_with(".part") {
+                let _ = std::fs::remove_file(e.path());
+            }
+        }
+    }
+    if !map.join("Info.dat").is_file() {
+        let _ = std::fs::remove_dir_all(&map);
     }
 }
 
@@ -616,6 +638,7 @@ pub fn run() {
             run_pipeline,
             cancel_pipeline,
             output_done,
+            discard_partial,
             finalize_output,
             expand_dir,
             setup_status,
@@ -623,6 +646,12 @@ pub fn run() {
             set_device,
             defaults
         ])
-        .run(tauri::generate_context!())
-        .expect("error while running osu2bs");
+        .build(tauri::generate_context!())
+        .expect("error while building osu2bs")
+        .run(|app, ev| {
+            // closing mid-gen must not orphan inference; the UI resumes it
+            if let tauri::RunEvent::Exit = ev {
+                kill_job(&app.state::<Job>());
+            }
+        });
 }

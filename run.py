@@ -171,14 +171,24 @@ def main(audio, outdir=None, difficulty="5.5", playlist=None, force=False,
             tier_work = work / name
             stars = upstream_stars(name, difficulty) if onset_checkpoint else float(difficulty)
             print(f"-- {name}: requesting osu timing at {stars:g} stars", flush=True)
-            generated = generate_osu(song, tier_work, stars, hydra_dev, env, audio.stem)
-            outdir.mkdir(parents=True, exist_ok=True)
-            source = outdir / f"source-{name}.osu"
-            source.write_bytes(generated.read_bytes())
+            # a paused (killed) run keeps finished tiers; resume reuses them
+            source = outdir / f"source-{name}-{stars:g}.osu"
+            if not source.is_file():
+                generated = generate_osu(song, tier_work, stars, hydra_dev, env, audio.stem)
+                outdir.mkdir(parents=True, exist_ok=True)
+                tmp = source.with_suffix(".part")
+                tmp.write_bytes(generated.read_bytes())
+                tmp.replace(source)
             sources[name], requested_stars[name] = source, stars
-        rc = convert.main(sources if onset_checkpoint else next(iter(sources.values())),
-                          audio, outdir, ",".join(names),
-                          **({"onset_checkpoint": onset_checkpoint} if onset_checkpoint else {}))
+        rc = 1
+        try:
+            rc = convert.main(sources if onset_checkpoint else next(iter(sources.values())),
+                              audio, outdir, ",".join(names),
+                              **({"onset_checkpoint": onset_checkpoint} if onset_checkpoint else {}))
+        finally:
+            if rc:  # a source that broke conversion must not be reused by the retry
+                for src in sources.values():
+                    src.unlink(missing_ok=True)
         if onset_checkpoint:
             metadata_path = outdir / "generation.json"
             metadata = json.loads(metadata_path.read_text())

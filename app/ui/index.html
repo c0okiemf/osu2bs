@@ -117,7 +117,8 @@
   </section>
 
 
-  <p class="section-label" id="queueLabel" hidden>Queue</p>
+  <p class="section-label queue-head" id="queueLabel" hidden>Queue
+    <button class="small-tint" id="clearBtn">Clear</button></p>
   <section class="card" id="queueCard" hidden>
     <div id="queueList"></div>
   </section>
@@ -130,6 +131,7 @@
     <span class="switch"><input type="checkbox" id="redo"><span></span></span>
   </label>
   <button class="cta" id="goBtn" disabled>Generate</button>
+  <button class="cta stop" id="stopBtn" hidden>Stop</button>
 </div>
 </div>
 
