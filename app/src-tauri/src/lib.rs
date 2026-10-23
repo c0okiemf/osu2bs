@@ -473,17 +473,31 @@ fn run_pipeline(
     *guard = Some(child);
     drop(guard);
 
+    // full per-song log (the UI keeps only the last error line):
+    // <engine>/logs/<output folder name>.log, overwritten on each run
+    let logs = PathBuf::from(&engine).join("logs");
+    let _ = std::fs::create_dir_all(&logs);
+    let name = all.get(2).and_then(|o| PathBuf::from(o).file_name().map(|n| n.to_owned()))
+        .unwrap_or_else(|| "run".into());
+    let log = std::fs::File::create(logs.join(name).with_extension("log")).ok()
+        .map(|f| std::sync::Arc::new(Mutex::new(f)));
+
     fn pump<R: std::io::Read + Send + 'static>(
         app: tauri::AppHandle, name: &'static str, r: R,
+        log: Option<std::sync::Arc<Mutex<std::fs::File>>>,
     ) {
         std::thread::spawn(move || {
             for line in BufReader::new(r).lines().map_while(Result::ok) {
+                if let Some(f) = &log {
+                    use std::io::Write;
+                    let _ = writeln!(f.lock().unwrap(), "{line}");
+                }
                 let _ = app.emit("pipeline-line", (name, line));
             }
         });
     }
-    pump(app.clone(), "out", stdout);
-    pump(app.clone(), "err", stderr);
+    pump(app.clone(), "out", stdout, log.clone());
+    pump(app.clone(), "err", stderr, log);
     let handle = app.clone();
     std::thread::spawn(move || loop {
         std::thread::sleep(std::time::Duration::from_millis(300));
