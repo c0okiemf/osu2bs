@@ -34,6 +34,14 @@ class OnsetFlowTests(unittest.TestCase):
         self.assertGreater(onset_context(a)[0][3], onset_context(a)[-1][3])
         with self.assertRaises(ValueError):onset_context(a+a)
 
+    def test_float_noise_slider_end_merges_with_head(self):
+        objects = [dict(t=100., end_t=26797.9999999991, kind='slider'),
+                   dict(t=26798., end_t=26798., kind='circle'),
+                   dict(t=26900., end_t=26901., kind='slider')]
+        a = source_onsets(objects, [(0., 500.)], 120.)
+        self.assertEqual([round(e['t']) for e in a], [100, 26798, 26900])
+        self.assertEqual(len(a[1]['sources']), 2)
+
     def test_target_hands_not_leaked_into_current_context(self):
         events = [(0,0,1,1,0,1), (4,1,0,2,1,1), (8,0,0,1,1,1), (8,1,1,2,0,2)]
         grid = TimeGrid.uniform(125., 0., 16)
@@ -94,10 +102,10 @@ class OnsetFlowTests(unittest.TestCase):
             def write(maps,bpm,meta,audio,out,shift_ms=0,end_ms=None):
                 captured.update(maps=maps,shift=shift_ms,end=end_ms)
                 convert.export_charts(maps,bpm,meta,out)
-            with patch.object(convert,'grid_steps',side_effect=AssertionError('snapping')),                 patch.object(convert,'convert_groomed',side_effect=AssertionError('rhythm rewrite')),                 patch('groom.cached_audio_features',side_effect=AssertionError('audio energy')),                 patch.object(convert,'write_map',side_effect=write):
+            with patch.object(convert,'grid_steps',side_effect=AssertionError('snapping')),                 patch.object(convert,'convert_groomed',side_effect=AssertionError('rhythm rewrite')),                 patch('groom.cached_audio_features',side_effect=AssertionError('audio energy')),                 patch.object(convert,'write_map',side_effect=write), patch.object(convert,'_audio_info',return_value=({},60.)):
                 self.assertEqual(convert.main(osu,root/'song.egg',root/'out',onset_checkpoint=checkpoint),0)
-            self.assertEqual(captured['shift'],0);self.assertIsNone(captured['end'])
-            self.assertEqual({n['t'] for n in captured['maps']['ExpertPlus'][0]},{103.,212.})
+            self.assertEqual(captured['shift'],convert.LEAD_MS-103.);self.assertIsNone(captured['end'])
+            self.assertEqual({n['t'] for n in captured['maps']['ExpertPlus'][0]},{convert.LEAD_MS*1.,convert.LEAD_MS+109.})
             with self.assertRaises(convert.GenerationError):
                 convert.main(osu,root/'song.egg',root/'out','Easy,ExpertPlus',onset_checkpoint=checkpoint)
             with self.assertRaises(convert.GenerationError):

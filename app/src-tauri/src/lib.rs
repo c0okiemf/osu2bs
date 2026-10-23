@@ -544,11 +544,19 @@ fn discard_partial(out_dir: String, slug: String) {
 }
 
 /// True when every requested artifact of a previous run is complete. A map
-/// folder still holding .osu sources was never finalized (crashed/stopped).
+/// folder still holding .osu sources was never finalized (crashed/stopped);
+/// one whose generation.json lists problems gets regenerated.
 #[tauri::command]
 fn output_done(out_dir: String, slug: String, dirs: bool, zips: bool) -> bool {
     let base = PathBuf::from(&out_dir);
     let map = base.join(&slug);
+    let healthy = std::fs::read_to_string(map.join("generation.json")).ok()
+        .and_then(|t| serde_json::from_str::<serde_json::Value>(&t).ok())
+        .and_then(|v| v.get("problems").and_then(|p| p.as_array()).map(|p| p.is_empty()))
+        .unwrap_or(true); // unaudited older maps count as fine
+    if !healthy {
+        return false;
+    }
     let dir_ok = map.join("Info.dat").is_file()
         && std::fs::read_dir(&map).map(|rd| rd.flatten().all(|e| {
             !e.file_name().to_string_lossy().ends_with(".osu")

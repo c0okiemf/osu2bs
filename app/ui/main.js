@@ -298,7 +298,7 @@ async function addFiles(paths) {
                        retried: false, lastErr: "" });
   }
   renderQueue();
-  $("goBtn").disabled = state.running || !state.queue.some((q) => !q.done);
+  $("goBtn").disabled = state.running || !state.queue.length;
 }
 
 T.event.listen("tauri://drag-drop", (e) => { $("dropZone").classList.remove("hover"); addFiles(e.payload.paths || []); });
@@ -396,7 +396,7 @@ async function generate() {
   for (let i = 0; i < state.queue.length; i++) {
     const q = state.queue[i];
     if (state.halt) break;
-    if (q.done) continue;
+    // done songs are re-checked too: a map flagged with problems regenerates
     if (!state.redo && await invoke("output_done", { outDir: state.outDir, slug: q.slug,
         dirs: state.genDirs, zips: state.genZips }).catch(() => false)) {
       q.done = true; q.phase = 100; q.status = "Already generated";
@@ -456,7 +456,7 @@ async function generate() {
 $("goBtn").onclick = generate;
 function setGoLabel() {
   $("goBtn").textContent = state.paused ? "Resume" : "Generate";
-  $("goBtn").disabled = !state.queue.some((q) => !q.done);
+  $("goBtn").disabled = !state.queue.length;
   $("stopBtn").hidden = !state.paused;
 }
 async function halt(kind) {

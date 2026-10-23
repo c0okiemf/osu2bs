@@ -14,6 +14,7 @@ from learned_geometry import sample_geometry
 SCHEMA = 'onset-hands-v1-exact-ms-density2s-absolute-geometry'
 HAND_SIZE = 20                         # dir9 + col4 + layer3 + count3 + known1
 INPUT_SIZE = 2 * HAND_SIZE + 4 + 8 + 3
+MERGE_MS = 2.  # source events closer than this are one onset (no music is <2ms apart)
 
 
 def onehot(value, size):
@@ -53,8 +54,17 @@ def source_onsets(objects, timing, bpm):
             if not math.isfinite(t) or t < 0:
                 raise ValueError('invalid source timestamp')
             grouped.setdefault(float(t), []).append(dict(object=i, role=role))
-    result = []
+    # Computed slider ends land within float noise / 1ms of another object
+    # (26797.9999 vs 26798.0): one musical moment, so one onset. Splitting it
+    # gave the model two "onsets" and could put two swings on one hand.
+    merged = []
     for t, sources in sorted(grouped.items()):
+        if merged and t - merged[-1][0] < MERGE_MS:
+            merged[-1][1].extend(sources)
+        else:
+            merged.append((t, sources))
+    result = []
+    for t, sources in merged:
         start, beat_ms = points[max(0, bisect.bisect_right(starts, t)-1)]
         result.append(dict(t=t, beat=(t-start)/beat_ms, beat_ms=beat_ms, sources=sources))
     return result

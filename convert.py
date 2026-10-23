@@ -17,6 +17,9 @@ from parity import HandParity, is_hammer, violations
 LEFT, RIGHT = 0, 1
 
 
+DECODE_SEEDS = 32
+
+
 class GenerationError(Exception):
     """Generation or export failed validation; do not publish an invalid map."""
 
@@ -820,6 +823,68 @@ def write_map(maps, bpm, meta, audio_in, outdir, shift_ms=0, end_ms=None):
     package_map(outdir)
 
 
+MIN_COVERAGE = 0.6  # share of 5s windows holding a block; p5 of 1449 shipped tiers was 0.73
+WINDOW_S = 5.
+NEAR_MS = 2.        # same-hand swings closer than this are one double-hit
+
+
+def coverage(times_ms, duration_s):
+    n = max(1, int(duration_s // WINDOW_S))
+    return len({int(t / 1000 // WINDOW_S) for t in times_ms} & set(range(n))) / n
+
+
+def map_problems(mapdir):
+    """Health of an exported map as the player gets it. Non-empty = the app
+    regenerates it on the next run even though it is 'already generated'."""
+    mapdir = Path(mapdir)
+    info = json.loads((mapdir / "Info.dat").read_text())
+    beat_ms = 60000.0 / info["_beatsPerMinute"]
+    duration = _audio_info(mapdir / info["_songFilename"])[1]
+    problems = []
+    for bs in info["_difficultyBeatmapSets"]:
+        for d in bs["_difficultyBeatmaps"]:
+            name = d["_beatmapFilename"].removesuffix(".dat")
+            notes = json.loads((mapdir / d["_beatmapFilename"]).read_text())["_notes"]
+            ts = sorted(n["_time"] * beat_ms for n in notes)
+            if not ts:
+                problems.append(f"{name}: no blocks")
+                continue
+            if ts[0] < MIN_LEAD_MS - 1:
+                problems.append(f"{name}: first block at {ts[0] / 1000:.1f}s, no lead-in")
+            if ts[-1] > duration * 1000:
+                problems.append(f"{name}: blocks after the song ends")
+            cov = coverage(ts, duration)
+            if cov < MIN_COVERAGE:
+                problems.append(f"{name}: blocks cover only {cov:.0%} of the song")
+            for hand in (0, 1):
+                sw = sorted(n["_time"] * beat_ms for n in notes
+                            if n["_type"] == hand and n["_cutDirection"] != 8)
+                near = sum(b - a < NEAR_MS for a, b in zip(sw, sw[1:]))
+                if near:
+                    problems.append(f"{name}: {near} same-hand double swings")
+    return problems
+
+
+def audit(parent, write=False):
+    """Stamp problems into generation.json of maps made before the check
+    existed (metadata only; the SongCore hash ignores generation.json)."""
+    bad = 0
+    for gen in sorted(Path(parent).glob("*/generation.json")):
+        try:
+            problems = map_problems(gen.parent)
+        except (OSError, ValueError, KeyError, GenerationError) as e:
+            problems = [f"unreadable map: {e}"]
+        if problems:
+            bad += 1
+            print(f"{gen.parent.name}: {'; '.join(problems)}")
+        if write:
+            meta = json.loads(gen.read_text())
+            meta["problems"] = problems
+            gen.write_text(json.dumps(meta, indent=1))
+    print(f"{bad} map(s) need regeneration")
+    return bad
+
+
 def main_onsets(osu_path, audio_path, outdir, diffs, checkpoint):
     """One immutable upstream osu timeline per selected Beat Saber difficulty."""
     from hashlib import sha256
@@ -839,23 +904,35 @@ def main_onsets(osu_path, audio_path, outdir, diffs, checkpoint):
         model = load_model(checkpoint)
     except (ValueError, OSError, RuntimeError) as exc:
         raise GenerationError(f"onset-flow generation failed: {exc}") from exc
+    audio_ms = _audio_info(audio_path)[1] * 1000
     maps, ledgers, records = {}, {}, {}
     output_meta = output_bpm = None
     for name in names:
         spec = diff_spec(name)
         meta, objects, bpm, _ = parse_osu(sources[name])
-        onsets = source_onsets(objects, meta.get("_timing"), bpm)
+        # upstream sometimes hallucinates objects minutes/hours past the end
+        # Upstream also dumps stray objects at exactly t=0 (often a 5+ stack
+        # followed by 10-30s of nothing): never music, drop them.
+        onsets = [o for o in source_onsets(objects, meta.get("_timing"), bpm)
+                  if 0 < o['t'] <= audio_ms]
         if not onsets:
             raise GenerationError(f"{name}: upstream osu map contains no playable onsets")
-        try:
-            notes = decode(onsets, model)
-        except (ValueError, OSError, RuntimeError) as exc:
-            raise GenerationError(f"{name}: onset-flow generation failed: {exc}") from exc
-        problems = check(notes, bpm, cap=float("inf"))
-        if len({(n['t'], n['col'], n['layer']) for n in notes}) != len(notes):
-            problems.append("duplicate block occupancy")
-        if problems:
-            raise GenerationError(f"{name}: " + "; ".join(problems))
+        # Decoding is sampled: a seed that breaks a hard check is redrawn
+        # rather than failing the song (seed 0 first, so passing maps are unchanged).
+        for seed in range(DECODE_SEEDS):
+            try:
+                notes = decode(onsets, model, seed=seed)
+            except (ValueError, OSError, RuntimeError) as exc:
+                raise GenerationError(f"{name}: onset-flow generation failed: {exc}") from exc
+            problems = check(notes, bpm, cap=float("inf"))
+            if len({(n['t'], n['col'], n['layer']) for n in notes}) != len(notes):
+                problems.append("duplicate block occupancy")
+            if not problems:
+                break
+            print(f"{name}: decode seed {seed} rejected ({'; '.join(problems)})", flush=True)
+        else:
+            raise GenerationError(f"{name}: no clean decode in {DECODE_SEEDS} seeds: "
+                                  + "; ".join(problems))
         if output_meta is None:
             output_meta, output_bpm = meta, bpm
         maps[name] = (notes, [], spec)
@@ -864,12 +941,20 @@ def main_onsets(osu_path, audio_path, outdir, diffs, checkpoint):
             source_osu=str(sources[name]),
             source_osu_sha256=sha256(Path(sources[name]).read_bytes()).hexdigest(),
             source_onsets=len(onsets),
+            decode_seed=seed,
             peak_nps=peak_nps([n['t'] for n in notes if n['dir'] != 8]),
             density_policy_diagnostics=check(notes, bpm, cap=NPS_CAP * spec["scale"]))
         print(f"{spec['label']}: {len(onsets)} exact osu onsets, {len(notes)} learned BS blocks")
-    # All charts use milliseconds against the same unshifted audio. Export maps
+    # Hot starts get silence prepended so the first block can fly in (pad
+    # only: intros are never trimmed here). One shift for all tiers: same audio.
+    t0 = min(n[0]['t'] for n, _, _ in maps.values())
+    shift = LEAD_MS - t0 if t0 < MIN_LEAD_MS else 0
+    for notes, _, _ in maps.values():
+        for n in notes:
+            n['t'] += shift
+    # All charts use milliseconds against the same audio. Export maps
     # them to one common Info BPM even when upstream timing points differ.
-    write_map(maps, output_bpm, output_meta, audio_path, outdir)
+    write_map(maps, output_bpm, output_meta, audio_path, outdir, shift_ms=shift)
     outdir = Path(outdir)
     (outdir / "source-onsets.json").write_text(json.dumps(
         ledgers[names[0]] if len(names) == 1 else ledgers, indent=1))
@@ -877,12 +962,15 @@ def main_onsets(osu_path, audio_path, outdir, diffs, checkpoint):
         mode="osu-onsets", schema=SCHEMA,
         checkpoint_sha256=sha256(Path(checkpoint).read_bytes()).hexdigest(),
         energy_source="osu unique-onset density, centered 2s window",
-        lead_shift_ms=0, outro_end_ms=None,
+        lead_shift_ms=shift, outro_end_ms=None,
         grid_decision="exact upstream timestamps; no snapping",
         difficulties=names, per_difficulty=records)
     if len(names) == 1:
         metadata.update(records[names[0]])
+    metadata["problems"] = map_problems(outdir)
     (outdir / "generation.json").write_text(json.dumps(metadata, indent=1))
+    if metadata["problems"]:  # still published; the app regenerates it next run
+        print("CHECKS FAILED: " + "; ".join(metadata["problems"]), flush=True)
     print(f"Exported {len(names)} difficulties -> {outdir}")
     return 0
 
@@ -999,6 +1087,9 @@ def main(osu_path, audio_path, outdir, diffs=None, *, onset_checkpoint=None):
 
 
 if __name__ == "__main__":
+    if sys.argv[1:2] == ["--audit"]:  # convert.py --audit OUT_PARENT [--write]
+        audit(sys.argv[2], write="--write" in sys.argv)
+        sys.exit(0)
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("osu_path")

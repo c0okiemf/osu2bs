@@ -97,22 +97,76 @@ def upstream_stars(name, expert_plus_stars):
     return stars
 
 
+# Upstream timing sometimes finds no beat (crash: "No timing points") or a
+# few stray objects across the whole song; super_timing crashes the same way
+# when it hears no steady beat (rubato ballads). Escalate per tier until the
+# chart covers the song (convert.MIN_COVERAGE): plain -> super_timing -> map
+# against a librosa beat-tracked timing reference, which always has timing.
+ATTEMPTS = ("plain", "super", "beat", "beat")
+
+
+def beat_reference(song, path):
+    """Constant-BPM timing-only .osu from a classical beat tracker."""
+    import librosa
+    import numpy as np
+    if path.is_file():
+        return path
+    y, sr = librosa.load(str(song), sr=22050, mono=True)
+    tempo, beats = librosa.beat.beat_track(y=y, sr=sr, units="time")
+    bpm = float(np.atleast_1d(tempo)[0]) or 120.
+    offset = round(float(beats[0]) * 1000) if len(beats) else 0
+    path.write_text(
+        "osu file format v14\n\n[General]\nAudioFilename: song.mp3\nMode: 0\n\n"
+        "[Metadata]\nTitle:ref\nArtist:ref\nCreator:osu2bs\nVersion:timing\n\n"
+        "[Difficulty]\nHPDrainRate:5\nCircleSize:4\nOverallDifficulty:8\n"
+        "ApproachRate:9\nSliderMultiplier:1.4\nSliderTickRate:1\n\n"
+        f"[TimingPoints]\n{offset},{60000 / bpm},4,2,0,100,1,0\n\n[HitObjects]\n")
+    return path
+
+
+def coverage(osu, duration_s):
+    _, objects, _, _ = convert.parse_osu(osu)
+    # t=0 objects are upstream junk that convert drops: don't let them count
+    return convert.coverage([t for o in objects for t in (o["t"], o["end_t"]) if t > 0],
+                            duration_s)
+
+
 def generate_osu(song, work, stars, hydra_dev, env, title):
-    """Run the upstream mapper once; callers request one timeline per tier."""
-    work.mkdir()
-    proc = subprocess.Popen(
-        [str(PY), "inference.py", "-cn", "v32",
-         "audio_path=" + _hydra_str(song), "output_path=" + _hydra_str(work),
-         "gamemode=0", f"difficulty={stars}", "export_osz=false",
-         hydra_dev, "title=" + _hydra_str(title),
-         "hydra.run.dir=" + _hydra_str(work / "logs")], cwd=MAPPER, env=env)
-    threading.Thread(target=_watchdog, args=(proc,), daemon=True).start()
-    if proc.wait() != 0:
+    """Run the upstream mapper for one tier until its chart covers the song.
+    Returns the best .osu; raises only when every attempt crashed."""
+    duration = convert._audio_info(song)[1]
+    best = None
+    for i, mode in enumerate(ATTEMPTS):
+        out = work / f"try{i}"
+        out.mkdir(parents=True)
+        extra = {"plain": [], "super": ["super_timing=true"]}.get(mode) or [
+            "beatmap_path=" + _hydra_str(beat_reference(song, work / "timing.osu")),
+            "in_context=[TIMING]"]
+        proc = subprocess.Popen(
+            [str(PY), "inference.py", "-cn", "v32",
+             "audio_path=" + _hydra_str(song), "output_path=" + _hydra_str(out),
+             "gamemode=0", f"difficulty={stars}", "export_osz=false",
+             hydra_dev, "title=" + _hydra_str(title), *extra,
+             "hydra.run.dir=" + _hydra_str(out / "logs")], cwd=MAPPER, env=env)
+        threading.Thread(target=_watchdog, args=(proc,), daemon=True).start()
+        rc = proc.wait()
+        osus = sorted(out.glob("*.osu"), key=lambda p: p.stat().st_mtime)
+        if rc != 0 or not osus:
+            print(f"upstream attempt {i + 1} ({mode}) failed", flush=True)
+            continue
+        cov = coverage(osus[-1], duration)
+        if best is None or cov > best[0]:
+            best = (cov, osus[-1])
+        if cov >= convert.MIN_COVERAGE:
+            break
+        print(f"upstream attempt {i + 1} ({mode}): chart covers {cov:.0%} of the song",
+              flush=True)
+    if best is None:
         raise RuntimeError("upstream inference failed")
-    osus = sorted(work.glob("*.osu"), key=lambda p: p.stat().st_mtime)
-    if not osus:
-        raise RuntimeError("Mapperatorinator produced no .osu file")
-    return osus[-1]
+    if best[0] < convert.MIN_COVERAGE:
+        print(f"CHECKS FAILED: best upstream chart covers only {best[0]:.0%} of the song",
+              flush=True)
+    return best[1]
 
 
 def main(audio, outdir=None, difficulty="5.5", playlist=None, force=False,
@@ -162,6 +216,9 @@ def main(audio, outdir=None, difficulty="5.5", playlist=None, force=False,
         dev = os.environ.get("OSU2BS_DEVICE", "cuda:0")
         env = {**os.environ}
         if dev.startswith("cuda"):
+            # the app's GPU list is nvidia-smi (PCI) order; CUDA defaults to
+            # fastest-first, so cuda:1 = 5080 in the UI ran on the 5070
+            env["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
             env["CUDA_VISIBLE_DEVICES"] = dev.split(":")[1] if ":" in dev else "0"
             hydra_dev = "device=cuda"
         else:
