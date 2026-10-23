@@ -910,11 +910,10 @@ def main_onsets(osu_path, audio_path, outdir, diffs, checkpoint):
     for name in names:
         spec = diff_spec(name)
         meta, objects, bpm, _ = parse_osu(sources[name])
-        # upstream sometimes hallucinates objects minutes/hours past the end
-        # Upstream also dumps stray objects at exactly t=0 (often a 5+ stack
-        # followed by 10-30s of nothing): never music, drop them.
+        # Rare slider tails land minutes/hours past the end (cause upstream
+        # not found yet); a block after the audio is unplayable, so drop it.
         onsets = [o for o in source_onsets(objects, meta.get("_timing"), bpm)
-                  if 0 < o['t'] <= audio_ms]
+                  if o['t'] <= audio_ms]
         if not onsets:
             raise GenerationError(f"{name}: upstream osu map contains no playable onsets")
         # Decoding is sampled: a seed that breaks a hard check is redrawn

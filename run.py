@@ -126,16 +126,15 @@ def beat_reference(song, path):
 
 def coverage(osu, duration_s):
     _, objects, _, _ = convert.parse_osu(osu)
-    # t=0 objects are upstream junk that convert drops: don't let them count
-    return convert.coverage([t for o in objects for t in (o["t"], o["end_t"]) if t > 0],
-                            duration_s)
+    return convert.coverage([t for o in objects for t in (o["t"], o["end_t"])], duration_s)
 
 
 def generate_osu(song, work, stars, hydra_dev, env, title):
     """Run the upstream mapper for one tier until its chart covers the song.
-    Returns the best .osu; raises only when every attempt crashed."""
+    Gives up with an error when no attempt does; the app retries the song on
+    the next run (finished tiers are kept)."""
     duration = convert._audio_info(song)[1]
-    best = None
+    best = 0.
     for i, mode in enumerate(ATTEMPTS):
         out = work / f"try{i}"
         out.mkdir(parents=True)
@@ -143,7 +142,7 @@ def generate_osu(song, work, stars, hydra_dev, env, title):
             "beatmap_path=" + _hydra_str(beat_reference(song, work / "timing.osu")),
             "in_context=[TIMING]"]
         proc = subprocess.Popen(
-            [str(PY), "inference.py", "-cn", "v32",
+            [str(PY), str(HERE / "mapper.py"), "-cn", "v32",
              "audio_path=" + _hydra_str(song), "output_path=" + _hydra_str(out),
              "gamemode=0", f"difficulty={stars}", "export_osz=false",
              hydra_dev, "title=" + _hydra_str(title), *extra,
@@ -155,18 +154,13 @@ def generate_osu(song, work, stars, hydra_dev, env, title):
             print(f"upstream attempt {i + 1} ({mode}) failed", flush=True)
             continue
         cov = coverage(osus[-1], duration)
-        if best is None or cov > best[0]:
-            best = (cov, osus[-1])
         if cov >= convert.MIN_COVERAGE:
-            break
+            return osus[-1]
+        best = max(best, cov)
         print(f"upstream attempt {i + 1} ({mode}): chart covers {cov:.0%} of the song",
               flush=True)
-    if best is None:
-        raise RuntimeError("upstream inference failed")
-    if best[0] < convert.MIN_COVERAGE:
-        print(f"CHECKS FAILED: best upstream chart covers only {best[0]:.0%} of the song",
-              flush=True)
-    return best[1]
+    raise RuntimeError(f"upstream inference failed: {len(ATTEMPTS)} attempts, best chart "
+                       f"covered {best:.0%} of the song (need {convert.MIN_COVERAGE:.0%})")
 
 
 def main(audio, outdir=None, difficulty="5.5", playlist=None, force=False,

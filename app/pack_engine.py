@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "app" / "src-tauri" / "engine.zip"
 
-FILES = ["run.py", "convert.py", "groom.py", "critic.py", "parity.py",
+FILES = ["run.py", "mapper.py", "convert.py", "groom.py", "critic.py", "parity.py",
          "motion.py", "swing_clearance.py", "onset_flow.py", "learned_geometry.py", "timing.py", "ladder.py", "ladder.json", "groom.pt",
          "flow.pt", "onset_flow.pt", "critic.pt", "requirements-win.txt",
          # Q5 scoped release: bundle policy + its modules and artifacts

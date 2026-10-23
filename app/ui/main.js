@@ -24,7 +24,7 @@ const S = {
 const state = {
   // {path, name, slug, status, phase, done, err}; survives app restarts
   queue: S.get("queue", []).map((q) => ({ ...q, phase: q.done ? 100 : 0,
-    soft: false, retried: false, lastErr: "",
+    soft: false, lastErr: "",
     // anything mid-run when the app closed counts as paused
     status: q.done || q.err || ["Ready", "Stopped"].includes(q.status) ? q.status : "Paused" })),
   paused: S.get("paused", false),  // a run was paused or the app closed mid-run
@@ -295,7 +295,7 @@ async function addFiles(paths) {
     const name = p.split(/[\\/]/).pop();
     state.queue.push({ path: p, name, slug: slug(name), status: "Ready",
                        phase: 0, done: false, err: false, soft: false,
-                       retried: false, lastErr: "" });
+                       lastErr: "" });
   }
   renderQueue();
   $("goBtn").disabled = state.running || !state.queue.length;
@@ -428,12 +428,7 @@ async function generate() {
           keepDirs: state.genDirs, keepZips: state.genZips }).catch(() => {});
         q.done = true; q.phase = 100;
         q.status = q.soft ? "Done — map has rough edges" : "Done";
-      } else if (!q.retried) {
-        q.retried = true;           // transient GPU hiccups deserve one retry
-        q.status = "Retrying…"; q.phase = 0; q.soft = false;
-        renderQueue();
-        i--; continue;
-      } else {
+      } else {  // run.py already retried each tier; the next Generate tries again
         q.err = true;
         q.status = "Failed — " + (q.lastErr || "see log");
       }
